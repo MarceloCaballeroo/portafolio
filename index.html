@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-zT0NZ/BJwQFNsJZNsjwFLSd6OC7zRKdlPAMlxB3B0zM='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-XwLD0DFUy+wD5aOb90SlM9FC75KV9syHCagpuQMHDPc='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
 <meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -682,11 +682,6 @@ a.key { text-decoration: none; color: inherit; }
    Simulacro SOC: botón START, incidente guiado y combate final
    ========================================================= */
 .top-cta { position: fixed; z-index: 8; top: 6px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
-.cv-btn.hud { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; cursor: pointer; font: 600 12px var(--hud); letter-spacing: .14em; text-transform: uppercase;
-  color: #d6ebe8; background: #03080a; border: 1px solid rgba(95, 180, 176, .6); border-radius: 4px; transition: border-color .2s, box-shadow .2s; }
-.cv-btn.hud svg { width: 15px; height: 15px; fill: none; stroke: var(--h-cyan); stroke-width: 1.7; stroke-linejoin: round; }
-.cv-btn.hud small { font-size: 10px; color: #7f9aa0; letter-spacing: .08em; }
-.cv-btn.hud:hover, .cv-btn.hud:focus-visible { outline: none; border-color: #bff7f5; box-shadow: 0 0 14px rgba(95, 180, 176, .35); }
 .start-btn.hud { display: inline-flex; align-items: center; gap: 9px; height: 32px; padding: 0 14px 0 12px; cursor: pointer;
   font: 700 13px var(--hud); letter-spacing: .22em; color: #ffd9a0; background: linear-gradient(#3a1d08, #160b03); border: 1px solid rgba(212, 154, 76, .75); border-radius: 4px;
   box-shadow: 0 0 14px rgba(212, 140, 60, .32), inset 0 1px 0 rgba(255, 220, 170, .18); transition: box-shadow .2s, border-color .2s; }
@@ -828,7 +823,7 @@ a.key { text-decoration: none; color: inherit; }
 }
 @media (max-width: 1180px) and (min-width: 901px) and (min-aspect-ratio: 5/4) { .heading { display: none; } }
 @media (max-width: 1500px) { .hull-tag em { display: none; } }
-@media (max-width: 480px) { .start-btn.hud small, .cv-btn.hud small { display: none; } .sim-heat .bar { width: 140px; } }
+@media (max-width: 480px) { .start-btn.hud small { display: none; } .sim-heat .bar { width: 140px; } }
 @media (max-width: 980px) { .sim-heat kbd { display: none; } }
 
 /* --- Arranque del sistema M.C.O. (solo en la primera visita) --- */
@@ -912,6 +907,25 @@ a.key { text-decoration: none; color: inherit; }
 .hatch.parked .door.l { animation: none; transform: translateX(-62%); }
 .hatch.parked .door.r { animation: none; transform: translateX(62%); }
 .hatch.quick .boot-log, .hatch.quick .skip { display: none; }
+/* puerta de entrada: el visitante elige cabina o modo profesional */
+.hatch.gate-on { cursor: default; }
+.gate { position: absolute; left: 50%; top: calc(50% + 172px); z-index: 3; width: min(92vw, 620px); transform: translateX(-50%); display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.hatch:not(.gate-on) .gate, .hatch.gate-on .boot-log, .hatch.gate-on .skip { display: none; }
+.gate button { flex: 1 1 250px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 14px 18px; cursor: pointer; text-align: left; font-family: var(--hud); border-radius: 4px;
+  transition: border-color .2s, box-shadow .2s, transform .15s; }
+.gate button:active { transform: translateY(2px); }
+.gate b { font-size: 16px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.gate small { font-size: 12px; letter-spacing: .05em; }
+.gate .g-cockpit { color: #ffd9a0; background: linear-gradient(#3a1d08, #160b03); border: 1px solid rgba(212, 154, 76, .8); box-shadow: 0 0 22px rgba(212, 140, 60, .28), inset 0 1px 0 rgba(255, 220, 170, .18); }
+.gate .g-cockpit small { color: #d49a4c; }
+.gate .g-pro { color: #dbe9e8; background: rgba(3, 8, 10, .88); border: 1px solid rgba(95, 180, 176, .6); }
+.gate .g-pro small { color: #8fb3b1; }
+.gate .g-cockpit:hover, .gate .g-cockpit:focus-visible { outline: none; border-color: #ffd9a0; box-shadow: 0 0 30px rgba(230, 150, 60, .5), inset 0 1px 0 rgba(255, 220, 170, .25); }
+.gate .g-pro:hover, .gate .g-pro:focus-visible { outline: none; border-color: #bff7f5; box-shadow: 0 0 22px rgba(95, 180, 176, .35); }
+@media (max-height: 640px) {
+  .hatch.gate-on .lock { top: 36%; }
+  .gate { top: calc(36% + 150px); }
+}
 
 /* --- Ventanas holográficas (dialogs) --- */
 .hud-dialog {
@@ -1019,6 +1033,10 @@ a.key { text-decoration: none; color: inherit; }
     <li>Piloto identificado: <em>Marcelo Caballero</em></li>
     <li>Sistemas de defensa: <em>en línea</em></li>
   </ul>
+  <div class="gate" id="gate">
+    <button class="g-cockpit" type="button" id="gateCockpit"><b>Abrir cabina</b><small>Experiencia interactiva · Enter</small></button>
+    <button class="g-pro" type="button" id="gatePro"><b>Modo profesional</b><small>Portafolio y CV, sin cabina · P</small></button>
+  </div>
   <button class="skip" id="skip" type="button">Saltar secuencia</button>
 </div>
 
@@ -1147,7 +1165,6 @@ a.key { text-decoration: none; color: inherit; }
   </button>
   <p class="hull-tag" aria-hidden="true"><em>MONITOR PANORÁMICO 360°</em><small>CABECEO</small><b id="pitchVal">+00°</b></p>
   <div class="top-cta">
-  <button class="cv-btn hud" type="button" data-mode="pro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6zM14 3v5h5M9 12h8M9 16h8M9 8h3"/></svg>CV clásico<small>[P]</small></button>
   <button class="start-btn hud" type="button" id="startBtn"><i aria-hidden="true">&#9654;</i>START<small>Simulacro SOC</small></button>
   </div>
   <div class="sim" id="sim" hidden>
@@ -1559,7 +1576,7 @@ a.key { text-decoration: none; color: inherit; }
     <div class="stat"><b data-to="24000" data-suffix="+">24.000+</b><span>Endpoints bajo gestión XDR/EDR</span></div>
     <div class="stat"><b data-to="3000">3.000</b><span>Servidores en el mismo entorno</span></div>
     <div class="stat"><b data-to="100" data-suffix="+">100+</b><span>Personas en la comunidad estudiantil</span></div>
-    <div class="stat"><b data-to="14">14</b><span>Certificaciones en seguridad, cloud y datos</span></div>
+    <div class="stat"><b data-to="12">12</b><span>Certificaciones en seguridad, cloud y datos</span></div>
   </div>
 </section>
 
@@ -1892,6 +1909,10 @@ a.key { text-decoration: none; color: inherit; }
   var fmt = function (n) { return Math.round(n).toLocaleString(LANG === 'en' ? 'en-US' : 'es-CL'); };
   /* --- Idioma: español por defecto; inglés con el botón EN o ?lang=en (se recuerda) --- */
   var I18N = {
+    "Abrir cabina": "Open cockpit",
+    "Experiencia interactiva · Enter": "Interactive experience · Enter",
+    "Portafolio y CV, sin cabina · P": "Portfolio and CV, no cockpit · P",
+    "Elige tu acceso": "Choose your access",
     "Diagrama de arquitectura de PodoCare: navegador, Next.js con proxy de sesión y Server Actions, y Supabase con PostgreSQL con RLS, Auth con TOTP y bitácora inmutable": "PodoCare architecture diagram: browser, Next.js with session proxy and Server Actions, and Supabase with PostgreSQL with RLS, Auth with TOTP and an immutable audit log",
     "Arquitectura por capas, del README del repositorio. Haz clic para ampliarla.": "Layered architecture, from the repository README. Click to enlarge.",
     "2026 – hoy": "2026 – present",
@@ -3107,11 +3128,22 @@ a.key { text-decoration: none; color: inherit; }
     }, reduce ? 0 : 450);
   }
 
+  // La escotilla espera a que el visitante elija: cabina interactiva o modo profesional
+  var gateCockpit = document.getElementById('gateCockpit'), gatePro = document.getElementById('gatePro');
   function intro() {
     ensureGrime();
-    hatch.className = 'hatch';
-    var t0 = performance.now(), dur = 1500;
-    logItems.forEach(function (li, n) { later(function () { li.classList.add('on'); }, 200 + n * 420); });
+    hatch.className = 'hatch gate-on';
+    setSync(0); pct.textContent = 'MCO'; lbl.textContent = T('Elige tu acceso');
+    gateCockpit.focus({ preventScroll: true });
+  }
+  function gateOn() { return hatch.classList.contains('gate-on'); }
+  function chooseCockpit() {
+    if (!gateOn()) return;
+    hatch.classList.remove('gate-on'); lbl.textContent = T('Sincronización');
+    SFX.play('key');
+    if (reduce) { finishIntro(); return; }
+    var t0 = performance.now(), dur = 1300;
+    logItems.forEach(function (li, n) { later(function () { li.classList.add('on'); }, 150 + n * 360); });
     (function sync(now) {
       var f = Math.min(1, (now - t0) / dur);
       setSync(easeOut(f));
@@ -3119,6 +3151,20 @@ a.key { text-decoration: none; color: inherit; }
     })(t0);
     later(finishIntro, dur + 250);
   }
+  function choosePro() {
+    if (!gateOn()) return;
+    introDone = true; clearTimers();
+    hatch.classList.remove('gate-on');
+    lbl.textContent = T('Modo profesional'); pct.textContent = 'CV'; setSync(1);
+    mode = 'pro';
+    root.classList.add('mode-pro'); root.classList.remove('mode-cockpit');
+    try { history.replaceState(null, '', '#profesional'); } catch (err) {}
+    window.scrollTo(0, 0);
+    enterPro(); SFX.play('hatch'); SFX.sync();
+    openHatch(null);
+  }
+  gateCockpit.addEventListener('click', function (e) { e.stopPropagation(); chooseCockpit(); });
+  gatePro.addEventListener('click', function (e) { e.stopPropagation(); choosePro(); });
   function finishIntro() {
     if (introDone) return;
     introDone = true; clearTimers();
@@ -3149,7 +3195,7 @@ a.key { text-decoration: none; color: inherit; }
     bootEl.addEventListener('click', end); document.addEventListener('keydown', onKey, true);
     bt.push(setTimeout(end, 1350));
   }
-  hatch.addEventListener('click', function () { if (!introDone) finishIntro(); });
+  hatch.addEventListener('click', function () { if (!introDone && !gateOn()) finishIntro(); });
   document.getElementById('skip').addEventListener('click', function (e) { e.stopPropagation(); finishIntro(); });
 
   // Cerrar escotilla → cambiar modo → abrir
@@ -3322,6 +3368,11 @@ a.key { text-decoration: none; color: inherit; }
 
   document.addEventListener('keydown', function (e) {
     if (mode !== 'cockpit' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (!introDone && gateOn()) {
+      if (e.key === 'p' || e.key === 'P') { e.preventDefault(); choosePro(); }
+      else if (e.key === 'Escape' || ((e.key === 'Enter' || e.key === ' ') && e.target !== gatePro)) { e.preventDefault(); chooseCockpit(); }
+      return;
+    }
     if (!introDone && (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); finishIntro(); return; }
     if (dlg.open || busy || (SIM && SIM.isActive())) return;
     var n = parseInt(e.key, 10);
@@ -4245,7 +4296,6 @@ a.key { text-decoration: none; color: inherit; }
 
   /* --- Arranque --- */
   if (mode === 'pro') enterPro();
-  else if (reduce) { introDone = true; powerCockpit(); }
   else intro();
 })();
 </script>
