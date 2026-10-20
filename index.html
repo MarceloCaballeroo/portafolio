@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-b0ctvUIdUa1GfHeyvgy1KGT4NpFVxYdCLUZiWh/52aA='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-fyOKta62YpPl7iwRCsI+g3N7IULxO0+z4m9LE43nMg4='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
 <meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Busco práctica profesional o pasantía.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -673,6 +673,126 @@ a.key { text-decoration: none; color: inherit; }
   .open-hint { right: 22px; bottom: 12px; }
 }
 
+/* =========================================================
+   Simulacro SOC: botón START, incidente guiado y combate final
+   ========================================================= */
+.start-btn.hud { position: fixed; z-index: 8; top: 6px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 9px; height: 32px; padding: 0 14px 0 12px; cursor: pointer;
+  font: 700 13px var(--hud); letter-spacing: .22em; color: #ffd9a0; background: linear-gradient(#3a1d08, #160b03); border: 1px solid rgba(212, 154, 76, .75); border-radius: 4px;
+  box-shadow: 0 0 14px rgba(212, 140, 60, .32), inset 0 1px 0 rgba(255, 220, 170, .18); transition: box-shadow .2s, border-color .2s; }
+.start-btn.hud i { font-style: normal; font-size: 10px; color: #ff6b5a; animation: startBlink 1.4s steps(1) infinite; }
+.start-btn.hud small { font-size: 10px; font-weight: 500; letter-spacing: .14em; color: var(--h-amber); }
+.start-btn.hud:hover, .start-btn.hud:focus-visible { outline: none; border-color: #ffd9a0; box-shadow: 0 0 22px rgba(230, 150, 60, .55), inset 0 1px 0 rgba(255, 220, 170, .25); }
+@keyframes startBlink { 50% { opacity: .25; } }
+
+.sim { position: fixed; inset: 0; z-index: 9; pointer-events: none; font-family: var(--hud); color: #ecdede; }
+.sim[hidden] { display: none; }
+.sim-red { position: absolute; inset: 0; pointer-events: none; opacity: .5; transition: opacity .35s;
+  background: radial-gradient(ellipse at center, transparent 52%, rgba(130, 0, 22, .42)); box-shadow: inset 0 0 160px rgba(220, 40, 60, .45); }
+.sim.alarm .sim-red { animation: simPulse 1s ease-in-out infinite; }
+.sim.hit .sim-red { opacity: 1; background-color: rgba(200, 20, 40, .2); transition: none; }
+@keyframes simPulse { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+.sim-cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: none; touch-action: none; pointer-events: auto; }
+.sim-top { position: absolute; left: 50%; top: 46px; transform: translateX(-50%); width: min(1100px, 94vw); display: flex; align-items: center; gap: 14px; padding: 7px 10px; pointer-events: auto;
+  background: rgba(10, 4, 6, .86); border: 1px solid rgba(220, 70, 90, .45); border-radius: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, .5); }
+.sim-ap { flex: none; display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #f0b4b4; }
+.sim .bar { position: relative; width: 130px; height: 8px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .14); }
+.sim .bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: linear-gradient(90deg, #86c9a8, #5fb4b0); transition: width .3s; }
+.sim-ap.low .bar i { background: linear-gradient(90deg, #e0485e, #ff7a59); }
+.sim-ap b { min-width: 28px; font-size: 14px; color: #fff; font-variant-numeric: tabular-nums; }
+.sim-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; flex: 1; min-width: 0; }
+.sim-steps li { flex: 1; min-width: 0; padding: 5px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: #8a7f82; border: 1px solid rgba(255, 255, 255, .1); }
+.sim-steps li.now { color: #ffd9a0; border-color: rgba(212, 154, 76, .75); background: rgba(212, 154, 76, .13); }
+.sim-steps li.done { color: #86c9a8; border-color: rgba(134, 201, 168, .45); }
+.sim-quit { flex: none; padding: 6px 10px; cursor: pointer; font: 600 11px var(--hud); letter-spacing: .12em; text-transform: uppercase; color: #d8c6c6; background: transparent; border: 1px solid rgba(255, 255, 255, .22); border-radius: 3px; }
+.sim-quit:hover, .sim-quit:focus-visible { outline: none; border-color: var(--h-amber); color: #ffd9a0; }
+.sim-banner { position: absolute; left: 50%; top: 36%; width: min(900px, 92vw); transform: translate(-50%, -50%); text-align: center; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.sim-banner.on { opacity: 1; }
+.sim-banner b { display: block; font-size: clamp(26px, 4.4vw, 54px); letter-spacing: .14em; text-transform: uppercase; color: #ff5d72; text-shadow: 0 0 22px rgba(255, 60, 90, .6), 0 2px 0 #000; }
+.sim-banner span { display: block; margin-top: 10px; font-size: clamp(13px, 1.4vw, 16px); letter-spacing: .06em; color: #f3d6d6; text-shadow: 0 1px 6px #000; }
+.sim-card { position: absolute; left: 50%; top: 55%; transform: translate(-50%, -50%); width: min(680px, 94vw); max-height: calc(100vh - 150px); max-height: calc(100svh - 150px); overflow: auto; padding: 22px 26px 20px; pointer-events: auto;
+  background: linear-gradient(170deg, rgba(28, 10, 15, .97), rgba(8, 4, 6, .98)); border: 1px solid rgba(220, 70, 90, .5); box-shadow: 0 30px 80px rgba(0, 0, 0, .7), 0 0 30px rgba(220, 60, 80, .18);
+  clip-path: polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%); -webkit-user-select: text; user-select: text; }
+.sim-card[hidden], .sim-cv[hidden], .sim-boss[hidden], .sim-heat[hidden] { display: none; }
+.sim-card.shake { animation: simShake .35s; }
+@keyframes simShake { 20% { transform: translate(calc(-50% - 8px), -50%); } 40% { transform: translate(calc(-50% + 7px), -50%); } 60% { transform: translate(calc(-50% - 4px), -50%); } 80% { transform: translate(calc(-50% + 2px), -50%); } }
+.sim-tag { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #ff8a9a; }
+.sim-tag em { font-style: normal; color: var(--h-amber); text-align: right; }
+.sim-card h2 { margin: 8px 0 12px; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.15; letter-spacing: .01em; color: #fff; }
+.sim-log { list-style: none; margin: 0 0 14px; padding: 10px 12px; background: #050203; border: 1px solid rgba(255, 255, 255, .08); font: 12.5px/1.55 ui-monospace, Consolas, "Courier New", monospace; color: #9fd0c8; }
+.sim-log li::before { content: "› "; color: #ff5d72; }
+.sim-q { margin: 0 0 12px; font-size: 16px; line-height: 1.4; color: #f4e9e9; }
+.sim-opts { display: grid; gap: 8px; }
+.sim-opts button { position: relative; padding: 11px 14px 11px 40px; cursor: pointer; text-align: left; font: 500 14.5px/1.4 var(--hud); color: #e9dede; background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .15); border-radius: 4px; transition: border-color .15s, background .15s; }
+.sim-opts button::before { content: attr(data-k); position: absolute; left: 13px; top: 11px; font-weight: 700; color: var(--h-amber); }
+.sim-opts button:hover:not(:disabled), .sim-opts button:focus-visible { outline: none; border-color: var(--h-amber); background: rgba(212, 154, 76, .1); }
+.sim-opts button:disabled { cursor: default; }
+.sim-opts button.ok { color: #fff; border-color: #86c9a8; background: rgba(134, 201, 168, .14); }
+.sim-opts button.ok::before { content: "✓"; color: #86c9a8; }
+.sim-opts button.bad { color: #b7979c; border-color: rgba(224, 72, 94, .7); background: rgba(224, 72, 94, .1); }
+.sim-opts button.bad::before { content: "✕"; color: #ff5d72; }
+.sim-fb { margin-top: 12px; font-size: 14.5px; line-height: 1.5; color: #ecdede; }
+.sim-fb:empty { display: none; }
+.sim-fb p { margin: 0; }
+.sim-fb .ok { font-weight: 700; color: #86c9a8; }
+.sim-fb .bad { font-weight: 700; color: #ff7a8a; }
+.sim-fb small { display: block; margin-top: 7px; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--h-amber); }
+.sim-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.sim-next { padding: 10px 18px; cursor: pointer; font: 700 13px var(--hud); letter-spacing: .14em; text-transform: uppercase; color: #1a0d04; background: var(--h-amber); border: 1px solid var(--h-amber); border-radius: 3px; }
+.sim-next.ghost { color: #ecdede; background: transparent; border-color: rgba(255, 255, 255, .28); }
+.sim-next:hover, .sim-next:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(255, 217, 160, .5); }
+.sim-rank { display: flex; align-items: center; gap: 18px; margin: 4px 0 14px; }
+.sim-rank > b { flex: none; width: 74px; height: 74px; display: grid; place-items: center; font-size: 46px; line-height: 1; color: #ffd9a0; border: 2px solid var(--h-amber); text-shadow: 0 0 18px rgba(255, 190, 110, .6); }
+.sim-rank dl { margin: 0; display: grid; grid-template-columns: auto auto; gap: 3px 14px; font-size: 13px; }
+.sim-rank dt { color: #a99a9d; letter-spacing: .08em; text-transform: uppercase; font-size: 11px; align-self: center; }
+.sim-rank dd { margin: 0; color: #fff; font-weight: 600; }
+.sim-learn { margin: 10px 0 0; padding-left: 18px; font-size: 13.5px; line-height: 1.55; color: #cfc3c4; }
+.sim-learn b { color: #ffd9a0; font-weight: 600; }
+.sim-card > p.sim-q + p { margin: 0; }
+.sim-boss { position: absolute; left: 50%; top: 100px; width: min(560px, 80vw); transform: translateX(-50%); text-align: center; pointer-events: none; }
+.sim-boss span { display: block; margin-bottom: 5px; font-size: 12px; letter-spacing: .3em; color: #ff8a9a; text-shadow: 0 1px 4px #000; }
+.sim-boss .bar { width: 100%; height: 10px; border-color: rgba(255, 90, 110, .55); background: rgba(40, 0, 8, .6); }
+.sim-boss .bar i { background: linear-gradient(90deg, #ff3b5c, #cf8aa3); transition: width .15s; }
+.sim-heat { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; pointer-events: none; font-size: 11px; letter-spacing: .2em; color: #9fd0c8; text-shadow: 0 1px 4px #000; }
+.sim-heat .bar { width: 220px; background: rgba(0, 0, 0, .55); }
+.sim-heat .bar i { width: 0; background: linear-gradient(90deg, #5fb4b0, #d49a4c 70%, #ff3b5c); transition: none; }
+.sim-heat em { min-width: 110px; font-style: normal; color: #ff5d72; }
+.sim-heat kbd { font: inherit; color: #7f9aa0; letter-spacing: .08em; }
+
+/* paneles intervenidos por el atacante */
+.hack-ov { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 20px 40px; pointer-events: none;
+  background: repeating-linear-gradient(transparent 0 2px, rgba(0, 0, 0, .25) 2px 3px), linear-gradient(160deg, rgba(92, 8, 24, .95), rgba(30, 2, 8, .97));
+  font: 600 13px/1.35 var(--hud); letter-spacing: .07em; text-transform: uppercase; color: #ff9aa8; text-shadow: 0 0 8px rgba(255, 60, 90, .55);
+  animation: hackIn .45s steps(4), hackJit 3.2s steps(1) .45s infinite; }
+.hack-ov b { font-size: 16px; color: #fff; letter-spacing: .1em; }
+.hack-ov span::before { content: "▲ "; color: #ff3b5c; }
+.pod.pwned .panel { background: linear-gradient(160deg, rgba(255, 70, 95, .85), rgba(140, 20, 40, .35)); }
+.pod.fixed .in { animation: fixedFlash 1s ease-out; }
+@keyframes hackIn { 0% { opacity: 0; transform: translateX(-8px); } 50% { opacity: 1; transform: translateX(6px); } 100% { transform: none; } }
+@keyframes hackJit { 0%, 91% { transform: none; } 93% { transform: translateX(-4px) skewX(-5deg); } 96% { transform: translateX(3px); } }
+@keyframes fixedFlash { 0% { box-shadow: inset 0 0 0 2px #86c9a8, inset 0 0 50px rgba(134, 201, 168, .55); } 100% { box-shadow: inset 0 0 0 0 transparent; } }
+
+#cockpit.sim-on .stage { pointer-events: none; }
+#cockpit.sim-on .eject, #cockpit.sim-on .console { opacity: .5; transition: opacity .4s; }
+#cockpit.sim-combat .stage { opacity: .22; transition: opacity .6s; }
+#cockpit.sim-on .look-hint, #cockpit.sim-on .start-btn { visibility: hidden; }
+#cockpit.sim-on .snd-btn.hud, #cockpit.sim-on .lang-btn.hud { z-index: 10; }
+@media (prefers-reduced-motion: reduce) {
+  .start-btn.hud i, .sim.alarm .sim-red, .hack-ov, .sim-card.shake, .pod.fixed .in { animation: none; }
+}
+@media (max-width: 900px), (max-aspect-ratio: 5/4) {
+  .start-btn.hud { left: 4vw; transform: none; }
+  .sim-top { top: 48px; flex-wrap: wrap; gap: 8px 12px; }
+  .sim-steps { order: 3; flex-basis: 100%; }
+  .sim-steps li { padding: 4px 2px; font-size: 9px; letter-spacing: .04em; }
+  .sim-card { top: auto; bottom: 10px; transform: translateX(-50%); max-height: calc(100svh - 150px); padding: 18px 16px 16px; }
+  .sim-card.shake { animation: none; }
+  .sim-boss { top: 128px; }
+  .hack-ov { padding: 18px 24px; }
+}
+@media (max-width: 480px) { .start-btn.hud small { display: none; } .sim-heat .bar { width: 140px; } }
+@media (max-width: 640px) { .sim-heat kbd { display: none; } }
+
 /* --- Arranque del sistema M.C.O. (solo en la primera visita) --- */
 .mco-boot { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; cursor: pointer; font-family: var(--hud); text-align: center;
   background: repeating-linear-gradient(transparent 0 2px, rgba(0, 0, 0, .25) 2px 3px), radial-gradient(ellipse at center, #0a2328 0%, #020608 75%); transition: opacity .35s; }
@@ -988,6 +1108,20 @@ a.key { text-decoration: none; color: inherit; }
     <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="w" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
   </button>
   <p class="hull-tag" aria-hidden="true"><em>MONITOR PANORÁMICO 360°</em><small>CABECEO</small><b id="pitchVal">+00°</b></p>
+  <button class="start-btn hud" type="button" id="startBtn"><i aria-hidden="true">&#9654;</i>START<small>Simulacro SOC</small></button>
+  <div class="sim" id="sim" hidden>
+    <div class="sim-red" aria-hidden="true"></div>
+    <canvas class="sim-cv" id="simCv" tabindex="-1" hidden></canvas>
+    <div class="sim-top">
+      <div class="sim-ap" id="simApWrap"><span id="simApLbl">Integridad</span><div class="bar"><i id="simAp"></i></div><b id="simApV">100</b></div>
+      <ol class="sim-steps" id="simSteps"></ol>
+      <button class="sim-quit" type="button" id="simQuit">Salir [Esc]</button>
+    </div>
+    <div class="sim-boss" id="simBoss" hidden><span id="simBossName">VIRUS</span><div class="bar"><i id="simBossHp"></i></div></div>
+    <div class="sim-heat" id="simHeat" hidden><span>EN</span><div class="bar"><i id="simHeatV"></i></div><em id="simOver"></em><kbd id="simKeys"></kbd></div>
+    <div class="sim-banner" id="simBanner" role="status"></div>
+    <div class="sim-card" id="simCard" role="dialog" aria-modal="true" aria-labelledby="simTitle" hidden></div>
+  </div>
   <p class="look-hint" id="lookHint">Mueve el mouse para mirar alrededor · 360°</p>
   <div class="mco-boot" id="mcoBoot" hidden>
     <div class="mco-box">
@@ -2030,7 +2164,14 @@ a.key { text-decoration: none; color: inherit; }
       lock: function () { tone(1650, 0, 0.06, 'square', 0.03); tone(1650, 0, 0.06, 'square', 0.03, 0.1); },
       contain: function () { tone(880, 0, 0.08, 'sine', 0.045); tone(1320, 0, 0.12, 'sine', 0.045, 0.09); },
       hatch: function () { noise(0.9, 1200, 0.1); tone(70, 40, 0.6, 'sine', 0.1); tone(220, 110, 0.25, 'square', 0.015, 0.55); },
-      boot: function () { tone(110, 220, 0.5, 'triangle', 0.05); tone(660, 0, 0.07, 'square', 0.025, 0.5); tone(990, 0, 0.09, 'square', 0.025, 0.62); }
+      boot: function () { tone(110, 220, 0.5, 'triangle', 0.05); tone(660, 0, 0.07, 'square', 0.025, 0.5); tone(990, 0, 0.09, 'square', 0.025, 0.62); },
+      alarm: function () { for (var k = 0; k < 3; k++) { tone(880, 620, 0.36, 'sawtooth', 0.045, k * 0.78); tone(620, 880, 0.36, 'sawtooth', 0.045, k * 0.78 + 0.39); } },
+      bad: function () { tone(240, 140, 0.26, 'square', 0.04); },
+      shot: function () { tone(1100, 240, 0.07, 'square', 0.018); noise(0.06, 5000, 0.02); },
+      hit: function () { tone(320, 70, 0.16, 'square', 0.035); noise(0.2, 2500, 0.05); },
+      hurt: function () { noise(0.3, 900, 0.12); tone(130, 50, 0.3, 'sawtooth', 0.06); },
+      warn: function () { tone(440, 0, 0.1, 'square', 0.03); tone(440, 0, 0.1, 'square', 0.03, 0.16); },
+      boom: function () { noise(1.3, 1600, 0.2); tone(90, 28, 1.1, 'sine', 0.14); }
     };
     // zumbido de fondo de la cabina
     function startHum() {
@@ -2837,10 +2978,10 @@ a.key { text-decoration: none; color: inherit; }
       else if (next) commsTimer = setTimeout(next, hold);
     })();
   }
-  function typeLine() { typeText(T(lines[li++ % lines.length]), typeLine, 3800); }
+  function typeLine() { if (SIM && SIM.isActive()) return; typeText(T(lines[li++ % lines.length]), typeLine, 3800); }
   // Cada sistema se explica en COMMS al apuntarlo
   var sayingFrom = null;
-  function explain(el) { if (sayingFrom === el) return; sayingFrom = el; typeText(el.dataset.say); }
+  function explain(el) { if (sayingFrom === el || (SIM && SIM.isActive())) return; sayingFrom = el; typeText(el.dataset.say); }
   function release(el) { if (sayingFrom !== el) return; sayingFrom = null; clearTimeout(commsTimer); commsTimer = setTimeout(typeLine, 2600); }
   document.querySelectorAll('#cockpit [data-say]').forEach(function (el) {
     el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') explain(el); });
@@ -3095,7 +3236,7 @@ a.key { text-decoration: none; color: inherit; }
   document.addEventListener('keydown', function (e) {
     if (mode !== 'cockpit' || e.ctrlKey || e.metaKey || e.altKey) return;
     if (!introDone && (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); finishIntro(); return; }
-    if (dlg.open || busy) return;
+    if (dlg.open || busy || (SIM && SIM.isActive())) return;
     var n = parseInt(e.key, 10);
     if (n >= 1 && n <= 7) openWin(order[n - 1], document.querySelector('.key[data-open="' + order[n - 1] + '"]'));
     else if (n === 8) window.open('https://github.com/MarceloCaballeroo', '_blank', 'noopener,noreferrer');
@@ -3215,10 +3356,583 @@ a.key { text-decoration: none; color: inherit; }
       try { localStorage.setItem('lang', LANG); } catch (e) {}
       applyLang();
       if (dlg.open && currentWin) openWin(currentWin);
+      SIM.relang();
       if (cockpit.classList.contains('on') && !sayingFrom) { li = Math.max(0, li - 1); typeLine(); }
     });
   });
   if (LANG === 'en') applyLang();
+
+
+  /* =========================================================
+     Simulacro SOC: incidente guiado (ciclo NIST) + combate final contra el virus
+     ========================================================= */
+  var SIM = (function () {
+    function $(id) { return document.getElementById(id); }
+    var simEl = $('sim'), card = $('simCard'), banner = $('simBanner'), stepsEl = $('simSteps');
+    var apWrap = $('simApWrap'), apBar = $('simAp'), apVal = $('simApV'), startBtn = $('startBtn'), quitBtn = $('simQuit');
+    var cv = $('simCv'), ctx = cv.getContext('2d'), bossBox = $('simBoss'), bossName = $('simBossName'), bossHp = $('simBossHp');
+    var heatBox = $('simHeat'), heatV = $('simHeatV'), overEl = $('simOver'), heatKeys = $('simKeys');
+    function E(es, en) { return { es: es, en: en }; }
+    function L(o) { return typeof o === 'string' ? o : (LANG === 'en' ? o.en : o.es); }
+    function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+    var PHASES = [E('Detección', 'Detection'), E('Análisis', 'Analysis'), E('Contención', 'Containment'), E('Erradicación', 'Eradication'),
+      E('Recuperación', 'Recovery'), E('Lecciones', 'Lessons'), E('Combate', 'Combat')];
+
+    var ROUNDS = [
+      { pod: '.p-top',
+        role: E('SOC nivel 1 · Monitoreo', 'SOC tier 1 · Monitoring'),
+        title: E('Un correo sospechoso y un inicio de sesión extraño', 'A suspicious email and a strange sign-in'),
+        hack: { b: E('Objetivo reescrito', 'Objective rewritten'), l: [E('Enviar credenciales a soporte-mco.xyz', 'Send credentials to soporte-mco.xyz'), E('Prioridad: urgente', 'Priority: urgent')] },
+        log: [E('[SIEM] 09:42 Correo «Actualiza tu clave del MCO» enviado a 37 pilotos', '[SIEM] 09:42 Email "Update your MCO password" sent to 37 pilots'),
+          E('[PROXY] 09:44 Clic en el enlace → dominio registrado hace 2 días', '[PROXY] 09:44 Link clicked → domain registered 2 days ago'),
+          E('[IdP] 09:47 Inicio de sesión del piloto desde un país desconocido', '[IdP] 09:47 Pilot sign-in from an unknown country')],
+        q: E('Eres analista SOC de nivel 1. ¿Qué haces primero?', 'You are a tier 1 SOC analyst. What do you do first?'),
+        opts: [
+          { ok: true, t: E('Abrir un incidente, correlacionar las tres alertas y escalar a nivel 2.', 'Open an incident, correlate the three alerts and escalate to tier 2.'),
+            why: E('Detectar es confirmar que no es un falso positivo: el correo, el clic y el inicio de sesión cuentan una sola historia. Se documenta en un ticket y se escala.', 'Detection means confirming it is not a false positive: the email, the click and the sign-in tell one story. You document it in a ticket and escalate.') },
+          { t: E('Borrar el correo de tu bandeja y seguir con lo tuyo.', 'Delete the email from your inbox and move on.'),
+            why: E('El correo llegó a 37 personas y ya hubo un inicio de sesión sospechoso. Ignorarlo deja al atacante adentro.', 'The email reached 37 people and there was already a suspicious sign-in. Ignoring it leaves the attacker inside.') },
+          { t: E('Apagar todos los sistemas del mecha de inmediato.', 'Shut down every system on the mecha immediately.'),
+            why: E('Es desproporcionado: detiene la operación y borra evidencia que vive en memoria. Primero se confirma y se dimensiona.', 'That is disproportionate: it stops operations and wipes evidence that lives in memory. First you confirm and size the problem.') }],
+        concept: E('Phishing · MITRE ATT&CK T1566', 'Phishing · MITRE ATT&CK T1566') },
+
+      { pod: '.p-gl',
+        role: E('SOC nivel 2 · Análisis', 'SOC tier 2 · Analysis'),
+        title: E('La cuenta del piloto hace cosas que el piloto no hace', 'The pilot account is doing things the pilot never does'),
+        hack: { b: E('Sesión admin desconocida', 'Unknown admin session'), l: [E('Endpoints en línea: 0', 'Endpoints online: 0'), E('Cuenta piloto ∈ Admins', 'Pilot account ∈ Admins')] },
+        log: [E('[IdP] El mismo token de sesión se usa desde 2 IP distintas', '[IdP] The same session token is used from 2 different IPs'),
+          E('[EDR] MCO-NAV-07: powershell.exe -enc JABjAGwAaQBlAG4AdA...', '[EDR] MCO-NAV-07: powershell.exe -enc JABjAGwAaQBlAG4AdA...'),
+          E('[AD] La cuenta del piloto fue agregada al grupo «Admins»', '[AD] The pilot account was added to the "Admins" group')],
+        q: E('¿Qué te dice esta evidencia?', 'What does this evidence tell you?'),
+        opts: [
+          { ok: true, t: E('Robaron las credenciales y las usan para escalar privilegios. Hay que medir el alcance: qué cuentas, qué equipos y desde cuándo.', 'The credentials were stolen and are being used to escalate privileges. Scope it: which accounts, which hosts and since when.'),
+            why: E('PowerShell codificado y una cuenta agregada a Admins son señales clásicas de escalamiento. Analizar es definir el alcance antes de actuar.', 'Encoded PowerShell and an account added to Admins are classic escalation signs. Analysis means scoping before acting.') },
+          { t: E('Es un ataque DDoS que satura los servidores.', 'It is a DDoS attack flooding the servers.'),
+            why: E('Un DDoS satura servicios con tráfico. Aquí hay accesos válidos y comandos ejecutados, no saturación.', 'A DDoS floods services with traffic. Here there are valid logins and executed commands, not flooding.') },
+          { t: E('Un error del piloto; basta con pedirle que tenga más cuidado.', 'A pilot mistake; just ask them to be more careful.'),
+            why: E('Nadie agrega su cuenta a Admins por error desde dos IP a la vez. Subestimar la evidencia le da tiempo al atacante.', 'Nobody adds their account to Admins by mistake from two IPs at once. Underestimating evidence buys the attacker time.') }],
+        concept: E('Cuentas válidas e intérprete de comandos · T1078 / T1059', 'Valid accounts and command interpreter · T1078 / T1059') },
+
+      { pod: '.p-wl',
+        role: E('Respuesta a incidentes', 'Incident response'),
+        title: E('Ransomware: los archivos se cifran y se propaga', 'Ransomware: files are being encrypted and it is spreading'),
+        hack: { b: E('EDR desactivado', 'EDR disabled'), l: [E('Archivos *.locked: 412/min', 'Files *.locked: 412/min'), E('Paga 5 BTC para recuperar', 'Pay 5 BTC to recover')] },
+        log: [E('[EDR] MCO-NAV-07 está cifrando archivos: *.locked (412 por minuto)', '[EDR] MCO-NAV-07 is encrypting files: *.locked (412 per minute)'),
+          E('[RED] Conexiones SMB desde MCO-NAV-07 hacia otros 14 equipos', '[NET] SMB connections from MCO-NAV-07 to 14 other hosts'),
+          E('[NOTA] «Paga 5 BTC y te devolvemos tus sistemas»', '[NOTE] "Pay 5 BTC and we give your systems back"')],
+        q: E('El ataque se está moviendo. ¿Cuál es la mejor contención?', 'The attack is moving. What is the best containment?'),
+        opts: [
+          { ok: true, t: E('Aislar el equipo desde el EDR, bloquear SMB entre segmentos y deshabilitar la cuenta comprometida.', 'Isolate the host from the EDR, block SMB between segments and disable the compromised account.'),
+            why: E('Contener es cortar la propagación sin destruir evidencia: aislamiento de red, segmentación y bloqueo de la cuenta frenan el movimiento lateral.', 'Containment cuts the spread without destroying evidence: network isolation, segmentation and disabling the account stop lateral movement.') },
+          { t: E('Pagar el rescate para recuperar todo rápido.', 'Pay the ransom to get everything back fast.'),
+            why: E('Pagar no garantiza recuperar nada, financia al atacante y te marca como objetivo. Las autoridades de ciberseguridad lo desaconsejan.', 'Paying does not guarantee recovery, funds the attacker and marks you as a target. Cybersecurity authorities advise against it.') },
+          { t: E('Reiniciar el equipo infectado.', 'Reboot the infected host.'),
+            why: E('Reiniciar no detiene la propagación a los otros 14 equipos y borra la memoria, donde suele estar la evidencia más valiosa.', 'Rebooting does not stop the spread to the other 14 hosts and wipes memory, where the most valuable evidence usually is.') }],
+        concept: E('Ransomware y movimiento lateral · T1486 / TA0008', 'Ransomware and lateral movement · T1486 / TA0008') },
+
+      { pod: '.p-gr',
+        role: E('Threat hunting', 'Threat hunting'),
+        title: E('El atacante dejó una puerta trasera', 'The attacker left a backdoor'),
+        hack: { b: E('Certificados revocados', 'Certificates revoked'), l: [E('Tarea «MCOUpdate» creada', 'Task "MCOUpdate" created'), E('Beacon cada 60 s', 'Beacon every 60 s')] },
+        log: [E('[EDR] Tarea programada «MCOUpdate» ejecuta C:\\Users\\Public\\svc.exe', '[EDR] Scheduled task "MCOUpdate" runs C:\\Users\\Public\\svc.exe'),
+          E('[RED] svc.exe contacta un servidor externo por el 443 cada 60 s', '[NET] svc.exe contacts an external server on 443 every 60 s'),
+          E('[IOC] El hash SHA-256 de svc.exe coincide con una familia conocida', '[IOC] The SHA-256 of svc.exe matches a known malware family')],
+        q: E('¿Cómo erradicas la amenaza?', 'How do you eradicate the threat?'),
+        opts: [
+          { ok: true, t: E('Buscar esos indicadores en toda la flota, eliminar la persistencia, bloquear el servidor de control y rotar credenciales.', 'Hunt those indicators across the whole fleet, remove the persistence, block the control server and rotate credentials.'),
+            why: E('Erradicar es eliminar todo rastro: con los IOC se encuentran otros equipos infectados, se quita la tarea programada, se corta el canal C2 y se invalidan las claves robadas.', 'Eradication removes every trace: the IOCs reveal other infected hosts, the scheduled task is removed, the C2 channel is cut and stolen keys are invalidated.') },
+          { t: E('Borrar svc.exe de ese equipo y dar el caso por cerrado.', 'Delete svc.exe from that host and close the case.'),
+            why: E('La tarea programada lo vuelve a descargar y otros equipos pueden tener la misma puerta trasera. Hay que buscar en toda la flota.', 'The scheduled task downloads it again and other hosts may have the same backdoor. You have to hunt across the fleet.') },
+          { t: E('Instalar un segundo antivirus en el equipo.', 'Install a second antivirus on the host.'),
+            why: E('Dos antivirus en paralelo suelen chocar y no eliminan una persistencia que ya se ejecuta con privilegios.', 'Two antivirus products usually clash and do not remove persistence that already runs with privileges.') }],
+        concept: E('Persistencia y comando y control · T1053 / T1071', 'Persistence and command and control · T1053 / T1071') },
+
+      { pod: '.p-wr',
+        role: E('Infraestructura y continuidad', 'Infrastructure and continuity'),
+        title: E('Volver a operar sin reabrir la puerta', 'Getting back online without reopening the door'),
+        hack: { b: E('Respaldos: ???', 'Backups: ???'), l: [E('VPN sin parchar · CVSS 9.8', 'Unpatched VPN · CVSS 9.8'), E('Acceso remoto abierto', 'Remote access open')] },
+        log: [E('[VULN] La puerta de enlace VPN tiene una vulnerabilidad crítica sin parche (CVSS 9.8)', '[VULN] The VPN gateway has an unpatched critical vulnerability (CVSS 9.8)'),
+          E('[BACKUP] Último respaldo verificado: hace 6 horas, aislado de la red', '[BACKUP] Last verified backup: 6 hours ago, isolated from the network'),
+          E('[EDR] Sin actividad maliciosa en las últimas 2 horas', '[EDR] No malicious activity in the last 2 hours')],
+        q: E('¿Cómo recuperas el mecha de forma segura?', 'How do you recover the mecha safely?'),
+        opts: [
+          { ok: true, t: E('Restaurar desde el respaldo verificado, parchear la VPN y vigilar de cerca antes de volver a producción.', 'Restore from the verified backup, patch the VPN and monitor closely before going back to production.'),
+            why: E('Recuperar es volver a operar sin reabrir la entrada: respaldos aislados y verificados, parche de la vulnerabilidad explotada y monitoreo reforzado.', 'Recovery means getting back online without reopening the entry point: isolated and verified backups, patching the exploited flaw and stronger monitoring.') },
+          { t: E('Reconectar todo tal como estaba antes del ataque.', 'Reconnect everything exactly as it was before the attack.'),
+            why: E('La VPN sigue vulnerable: el atacante puede volver a entrar por el mismo camino.', 'The VPN is still vulnerable: the attacker can walk back in the same way.') },
+          { t: E('Restaurar el respaldo más reciente, aunque sea de hace 5 minutos.', 'Restore the most recent backup, even if it is 5 minutes old.'),
+            why: E('Un respaldo tan reciente puede estar cifrado o traer la puerta trasera. Se restaura uno verificado y anterior al compromiso.', 'A backup that recent may be encrypted or carry the backdoor. You restore a verified one from before the compromise.') }],
+        concept: E('Explotación de servicios expuestos · T1190', 'Exploitation of public-facing services · T1190') },
+
+      { pod: null,
+        role: E('Auditoría post-incidente', 'Post-incident audit'),
+        title: E('Cerrar el incidente: lecciones aprendidas', 'Closing the incident: lessons learned'),
+        log: [E('[AUDIT] Cronología del incidente reconstruida de 09:42 a 13:10', '[AUDIT] Incident timeline rebuilt from 09:42 to 13:10'),
+          E('[AUDIT] Hallazgo: la MFA no era obligatoria para los pilotos', '[AUDIT] Finding: MFA was not mandatory for pilots'),
+          E('[AUDIT] Hallazgo: los registros de la VPN se guardaban solo 24 horas', '[AUDIT] Finding: VPN logs were kept for only 24 hours')],
+        q: E('Como auditor, ¿qué entregas al cerrar el caso?', 'As the auditor, what do you deliver when closing the case?'),
+        opts: [
+          { ok: true, t: E('Un informe con cronología, causa raíz, evidencia con cadena de custodia y controles a mejorar con responsable y plazo: MFA obligatoria, retención de registros y capacitación contra phishing.', 'A report with timeline, root cause, evidence with chain of custody and controls to improve with an owner and deadline: mandatory MFA, log retention and phishing training.'),
+            why: E('La auditoría convierte el ataque en mejoras medibles. Es lo que piden marcos como ISO 27001 y el NIST CSF.', 'The audit turns the attack into measurable improvements. It is what frameworks like ISO 27001 and the NIST CSF require.') },
+          { t: E('Un informe que culpa al piloto que hizo clic.', 'A report blaming the pilot who clicked.'),
+            why: E('Culpar no corrige nada. Las lecciones aprendidas se hacen sin culpables: se buscan fallas de proceso, como la falta de MFA.', 'Blame fixes nothing. Lessons learned are blameless: you look for process gaps, like the missing MFA.') },
+          { t: E('Nada: el incidente ya terminó.', 'Nothing: the incident is over.'),
+            why: E('Sin informe, las mismas brechas siguen abiertas y el próximo ataque entra igual.', 'Without a report the same gaps stay open and the next attack gets in the same way.') }],
+        concept: E('Lecciones aprendidas · ISO 27001 / NIST CSF', 'Lessons learned · ISO 27001 / NIST CSF') }
+    ];
+
+    var active = false, st = null, g = null, raf = 0, timers = [], keys = {};
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function say(o) { clearTimeout(commsTimer); typeText(L(o)); }
+    function shuffle(n) { var a = [], i; for (i = 0; i < n; i++) a.push(i); for (i = n - 1; i > 0; i--) { var j = Math.random() * (i + 1) | 0, t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+    function setAp(v) {
+      st.ap = Math.max(0, Math.min(100, Math.round(v)));
+      apBar.style.width = st.ap + '%'; apVal.textContent = st.ap;
+      apWrap.classList.toggle('low', st.ap < 35);
+    }
+    function renderSteps() {
+      stepsEl.textContent = '';
+      PHASES.forEach(function (p, i) { stepsEl.appendChild(el('li', i < st.step ? 'done' : i === st.step ? 'now' : '', L(p))); });
+    }
+    function showBanner(b, s, ms) {
+      banner.textContent = '';
+      banner.appendChild(el('b', '', L(b)));
+      if (s) banner.appendChild(el('span', '', L(s)));
+      banner.classList.add('on');
+      if (ms) later(function () { banner.classList.remove('on'); }, ms);
+    }
+    function flashHit() {
+      simEl.classList.add('hit');
+      setTimeout(function () { simEl.classList.remove('hit'); }, 180);
+    }
+
+    /* --- paneles intervenidos --- */
+    function pwn(r) {
+      var pod = r.pod && document.querySelector(r.pod); if (!pod) return;
+      var inn = pod.querySelector('.in'), ov = inn.querySelector('.hack-ov');
+      if (!ov) { ov = el('span', 'hack-ov'); ov.setAttribute('aria-hidden', 'true'); inn.appendChild(ov); }
+      ov.textContent = '';
+      ov.appendChild(el('b', '', L(r.hack.b)));
+      r.hack.l.forEach(function (x) { ov.appendChild(el('span', '', L(x))); });
+      pod.classList.add('pwned'); pod.classList.remove('fixed');
+    }
+    function unpwn(r, flash) {
+      var pod = r.pod && document.querySelector(r.pod); if (!pod) return;
+      var ov = pod.querySelector('.hack-ov'); if (ov) ov.parentNode.removeChild(ov);
+      pod.classList.remove('pwned');
+      if (flash && !reduce) { pod.classList.add('fixed'); setTimeout(function () { pod.classList.remove('fixed'); }, 1000); }
+    }
+
+    /* --- inicio y alerta --- */
+    function start() {
+      if (active || mode !== 'cockpit' || busy) return;
+      if (dlg.open) dlg.close();
+      active = true; sayingFrom = null;
+      st = { round: 0, step: 0, ap: 100, mistakes: 0, t0: Date.now(), phase: 'alert', tried: {}, solved: false, last: null,
+        orders: ROUNDS.map(function (r) { return shuffle(r.opts.length); }) };
+      cockpit.classList.add('sim-on');
+      simEl.hidden = false; simEl.classList.add('alarm');
+      card.hidden = true; hideCombat();
+      setAp(100); renderSteps();
+      SFX.play('alarm');
+      showBanner(E('⚠ Alerta de intrusión', '⚠ Intrusion alert'), E('Alguien intenta tomar el control del MCO-01. Equipo SOC y auditoría: a sus puestos.', 'Someone is trying to take over MCO-01. SOC and audit team: to your stations.'));
+      say(E('Alerta roja: los paneles muestran datos falsos. Sigue el ciclo de respuesta a incidentes para recuperar el mecha.', 'Red alert: the panels are showing fake data. Follow the incident response cycle to take the mecha back.'));
+      ROUNDS.forEach(function (r, i) { if (r.pod) later(function () { pwn(r); SFX.play('lock'); }, (reduce ? 0 : 600) + i * 280); });
+      later(function () {
+        banner.classList.remove('on'); simEl.classList.remove('alarm');
+        st.phase = 'soc'; renderRound(true);
+      }, reduce ? 1500 : 3600);
+    }
+
+    /* --- rondas de decisión --- */
+    function renderRound(focus) {
+      var r = ROUNDS[st.round], ord = st.orders[st.round];
+      st.step = st.round; renderSteps();
+      card.hidden = false; card.textContent = '';
+      var tag = el('p', 'sim-tag');
+      tag.appendChild(el('span', '', L(E('Fase ', 'Phase ')) + (st.round + 1) + '/6 · ' + L(PHASES[st.round])));
+      tag.appendChild(el('em', '', L(r.role)));
+      card.appendChild(tag);
+      var h = el('h2', '', L(r.title)); h.id = 'simTitle'; card.appendChild(h);
+      var ul = el('ul', 'sim-log'); r.log.forEach(function (x) { ul.appendChild(el('li', '', L(x))); }); card.appendChild(ul);
+      card.appendChild(el('p', 'sim-q', L(r.q)));
+      var box = el('div', 'sim-opts');
+      ord.forEach(function (oi, k) {
+        var o = r.opts[oi], b = el('button', '', L(o.t));
+        b.type = 'button'; b.setAttribute('data-k', 'ABC'.charAt(k));
+        if (st.tried[oi]) { b.className = o.ok ? 'ok' : 'bad'; b.disabled = true; }
+        else if (st.solved) b.disabled = true;
+        b.addEventListener('click', function () { answer(oi); });
+        box.appendChild(b);
+      });
+      card.appendChild(box);
+      var fb = el('div', 'sim-fb'); fb.setAttribute('aria-live', 'polite'); card.appendChild(fb);
+      if (st.last != null) {
+        var o = r.opts[st.last], p = el('p');
+        p.appendChild(el('span', o.ok ? 'ok' : 'bad', o.ok ? L(E('✓ Correcto. ', '✓ Correct. ')) : L(E('✕ No es lo mejor. ', '✕ Not the best call. '))));
+        p.appendChild(document.createTextNode(L(o.why) + (o.ok ? '' : ' ' + L(E('Prueba otra opción.', 'Try another option.')))));
+        fb.appendChild(p);
+        if (o.ok) fb.appendChild(el('small', '', L(r.concept)));
+      }
+      if (st.solved) {
+        var bt = el('div', 'sim-btns'), nx = el('button', 'sim-next', st.round < ROUNDS.length - 1 ? L(E('Siguiente fase ›', 'Next phase ›')) : L(E('Enfrentar al virus ›', 'Face the virus ›')));
+        nx.type = 'button'; nx.addEventListener('click', next); bt.appendChild(nx); card.appendChild(bt);
+      }
+      if (focus) {
+        var f = card.querySelector('.sim-next') || box.querySelector('button:not(:disabled)');
+        if (f) f.focus({ preventScroll: true });
+      }
+      card.scrollTop = st.solved || st.last != null ? card.scrollHeight : 0;
+    }
+    function answer(oi) {
+      if (st.solved || st.tried[oi]) return;
+      var r = ROUNDS[st.round], o = r.opts[oi];
+      st.tried[oi] = true; st.last = oi;
+      if (o.ok) {
+        st.solved = true; SFX.play('contain'); unpwn(r, true);
+        say(E('Correcto: ' + r.concept.es + '.', 'Correct: ' + r.concept.en + '.'));
+      } else {
+        st.mistakes++; setAp(Math.max(20, st.ap - 12)); SFX.play('bad'); flashHit();
+        if (!reduce) { card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake'); }
+      }
+      renderRound(true);
+    }
+    function next() {
+      st.round++; st.tried = {}; st.solved = false; st.last = null;
+      if (st.round < ROUNDS.length) renderRound(true); else bossIntro();
+    }
+
+    /* --- combate final --- */
+    var W = 0, H = 0, DPR = 1, TAGS = ['C2', 'PERSIST', 'CRYPTO', 'EXFIL', 'KEYLOG', 'WORM'];
+    function size() {
+      DPR = Math.min(window.devicePixelRatio || 1, 1.5); W = window.innerWidth; H = window.innerHeight;
+      cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    }
+    function rnd(a, b) { return a + Math.random() * (b - a); }
+    function dist(ax, ay, bx, by) { var dx = ax - bx, dy = ay - by; return Math.sqrt(dx * dx + dy * dy); }
+    function bossIntro() {
+      st.phase = 'boss'; st.step = 6; renderSteps(); card.hidden = true;
+      if (st.ap < 60) setAp(60);
+      cockpit.classList.add('sim-combat'); simEl.classList.add('alarm');
+      SFX.play('alarm');
+      showBanner(E('Main system · Modo combate', 'Main system · Combat mode'),
+        E('El código malicioso se ensambló en un núcleo autónomo. Destruye sus módulos y luego el núcleo.', 'The malicious code assembled itself into an autonomous core. Destroy its modules, then the core.'), 2600);
+      say(E('Apunta con el mouse y mantén el clic para disparar. Derriba los paquetes rojos antes de que impacten y vigila la temperatura del arma.', 'Aim with the mouse and hold click to fire. Shoot down red packets before they hit and watch your weapon heat.'));
+      later(function () { simEl.classList.remove('alarm'); }, 2600);
+      initCombat();
+    }
+    function initCombat() {
+      cv.hidden = false; bossBox.hidden = false; heatBox.hidden = false; size();
+      g = { t: 0, last: 0, intro: 2.4, hp: 100, phase: 1, nodes: [], vuln: 0, packets: [], parts: [], tracers: [], texts: [],
+        aim: { x: W / 2, y: H * 0.6 }, firing: false, heat: 0, over: 0, cd: 0, spawn: 1.6, shake: 0, side: 0, dead: 0, tShield: -9, x: W / 2, y: H * 0.42, R: 40 };
+      makeNodes(); updBoss(); overEl.textContent = '';
+      bossName.textContent = 'VIRUS · HYDRA-0DAY';
+      cancelAnimationFrame(raf); raf = requestAnimationFrame(frame);
+      cv.focus({ preventScroll: true });
+    }
+    function makeNodes() {
+      var n = [6, 5, 4][g.phase - 1]; g.nodes = []; g.vuln = 0;
+      for (var i = 0; i < n; i++) g.nodes.push({ a: i / n * Math.PI * 2, hp: 2, tag: TAGS[(i + g.phase) % TAGS.length], x: g.x, y: g.y });
+    }
+    function updBoss() { bossHp.style.width = Math.max(0, g.hp) + '%'; }
+    function burst(x, y, col, n) {
+      for (var i = 0; i < n && g.parts.length < 320; i++) {
+        var a = Math.random() * Math.PI * 2, s = rnd(60, 340);
+        g.parts.push({ x: x, y: y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: rnd(0.35, 0.8), col: col });
+      }
+    }
+    function text(x, y, s, col) { g.texts.push({ x: x, y: y, s: s, col: col, life: 1.1 }); }
+    function hurt() {
+      setAp(st.ap - 7); SFX.play('hurt'); flashHit();
+      if (!reduce) g.shake = 12;
+      if (st.ap <= 0) finish(false);
+    }
+    function shoot() {
+      g.heat += 8.5;
+      if (g.heat >= 100) { g.heat = 100; g.over = 1.6; overEl.textContent = L(E('Sobrecalentado', 'Overheat')); SFX.play('warn'); }
+      g.side ^= 1;
+      var ax = g.aim.x, ay = g.aim.y, i;
+      g.tracers.push({ x0: g.side ? W * 0.86 : W * 0.14, y0: H + 10, x1: ax, y1: ay, life: 0.08 });
+      SFX.play('shot');
+      for (i = g.packets.length - 1; i >= 0; i--) {
+        var k = g.packets[i];
+        if (dist(ax, ay, k.x, k.y) < k.r + 12) { g.packets.splice(i, 1); burst(k.x, k.y, '#ff8a9a', 12); return; }
+      }
+      for (i = 0; i < g.nodes.length; i++) {
+        var n = g.nodes[i];
+        if (dist(ax, ay, n.x, n.y) < g.R * 0.62) {
+          n.hp--; burst(n.x, n.y, '#ffd9a0', 6);
+          if (n.hp <= 0) {
+            g.nodes.splice(i, 1); burst(n.x, n.y, '#ff5d72', 24); SFX.play('hit'); text(n.x, n.y - 18, n.tag + ' ✕', '#ffd9a0');
+            if (!g.nodes.length) {
+              g.vuln = 6.5; SFX.play('lock');
+              showBanner(E('Núcleo expuesto', 'Core exposed'), E('Dispara al núcleo antes de que regenere el escudo.', 'Shoot the core before it regenerates its shield.'), 1400);
+            }
+          }
+          return;
+        }
+      }
+      if (dist(ax, ay, g.x, g.y) < g.R * 1.15) {
+        if (g.nodes.length) {
+          if (g.t - g.tShield > 0.8) { g.tShield = g.t; text(g.x, g.y - g.R * 1.7, L(E('Blindado: destruye los módulos', 'Shielded: destroy the modules')), '#9fd0c8'); }
+          burst(ax, ay, '#9fd0c8', 3); return;
+        }
+        g.hp -= 2.6; burst(ax, ay, '#ff3b5c', 9); updBoss();
+        var th = [66, 33, 0][g.phase - 1];
+        if (g.hp <= th) {
+          if (g.phase === 3) {
+            g.hp = 0; updBoss(); g.dead = 2; g.packets = []; g.firing = false;
+            for (var b = 0; b < 7; b++) burst(g.x + rnd(-g.R, g.R), g.y + rnd(-g.R, g.R), b % 2 ? '#ff3b5c' : '#ffd9a0', 34);
+            SFX.play('boom'); showBanner(E('Amenaza eliminada', 'Threat eliminated'), null, 1900);
+          } else {
+            g.phase++; makeNodes(); SFX.play('warn');
+            showBanner(E('Fase ' + g.phase + ' · El virus muta', 'Phase ' + g.phase + ' · The virus mutates'), E('Más rápido y con nuevos módulos.', 'Faster, with new modules.'), 1700);
+          }
+        }
+      }
+    }
+    function frame(now) {
+      raf = requestAnimationFrame(frame);
+      var dt = g.last ? Math.min(0.05, (now - g.last) / 1000) : 0.016; g.last = now; g.t += dt;
+      update(dt); if (g) draw();
+    }
+    function updFx(dt) {
+      var i, p;
+      for (i = g.parts.length - 1; i >= 0; i--) { p = g.parts[i]; p.life -= dt; if (p.life <= 0) { g.parts.splice(i, 1); continue; } p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= 0.92; p.vy *= 0.92; }
+      for (i = g.tracers.length - 1; i >= 0; i--) { g.tracers[i].life -= dt; if (g.tracers[i].life <= 0) g.tracers.splice(i, 1); }
+      for (i = g.texts.length - 1; i >= 0; i--) { p = g.texts[i]; p.life -= dt; p.y -= 26 * dt; if (p.life <= 0) g.texts.splice(i, 1); }
+      if (g.shake > 0) g.shake = Math.max(0, g.shake - dt * 40);
+    }
+    function update(dt) {
+      var t = g.t;
+      g.R = Math.max(28, Math.min(W, H) * 0.07);
+      g.x = W / 2 + Math.sin(t * 0.47) * W * 0.2;
+      g.y = H * 0.42 + Math.sin(t * 0.83 + 1) * H * 0.1;
+      var kx = (keys.ArrowRight || keys.d ? 1 : 0) - (keys.ArrowLeft || keys.a ? 1 : 0), ky = (keys.ArrowDown || keys.s ? 1 : 0) - (keys.ArrowUp || keys.w ? 1 : 0);
+      if (kx || ky) { g.aim.x = Math.max(0, Math.min(W, g.aim.x + kx * 640 * dt)); g.aim.y = Math.max(0, Math.min(H, g.aim.y + ky * 640 * dt)); }
+      var orb = g.R * 2.4, dir = g.phase % 2 ? 1 : -1, sp = 0.6 + g.phase * 0.2;
+      g.nodes.forEach(function (n) { var a = n.a + t * sp * dir; n.x = g.x + Math.cos(a) * orb; n.y = g.y + Math.sin(a) * orb * 0.78; });
+      updFx(dt);
+      if (g.dead) { g.dead -= dt; if (g.dead <= 0) finish(true); return; }
+      if (g.intro > 0) { g.intro -= dt; return; }
+      g.heat = Math.max(0, g.heat - 34 * dt);
+      if (g.over > 0) { g.over -= dt; if (g.over <= 0) overEl.textContent = ''; }
+      g.cd -= dt;
+      if (g.firing && g.cd <= 0 && g.over <= 0) { shoot(); g.cd = 0.11; if (!g) return; }
+      if (g.vuln > 0) { g.vuln -= dt; if (g.vuln <= 0) { makeNodes(); text(g.x, g.y - g.R * 2, L(E('Escudo restaurado', 'Shield restored')), '#ff8a9a'); } }
+      g.spawn -= dt;
+      if (g.spawn <= 0) {
+        g.spawn = [1.7, 1.3, 1.0][g.phase - 1] * rnd(0.8, 1.2);
+        g.packets.push({ sx: g.x, sy: g.y, tx: W * rnd(0.18, 0.82), ty: H * rnd(0.5, 0.86), p: 0, dur: [3, 2.6, 2.25][g.phase - 1], x: g.x, y: g.y, r: 6 });
+      }
+      for (var i = g.packets.length - 1; i >= 0; i--) {
+        var k = g.packets[i]; k.p += dt / k.dur;
+        var e = k.p * k.p; k.x = k.sx + (k.tx - k.sx) * e; k.y = k.sy + (k.ty - k.sy) * e; k.r = 7 + 38 * e;
+        if (k.p >= 1) { g.packets.splice(i, 1); burst(k.x, k.y, '#ff3b5c', 16); hurt(); if (!g) return; }
+      }
+      heatV.style.width = Math.min(100, g.heat).toFixed(0) + '%';
+    }
+    function bracket(x, y, s, c) {
+      ctx.moveTo(x - s, y - s + c); ctx.lineTo(x - s, y - s); ctx.lineTo(x - s + c, y - s);
+      ctx.moveTo(x + s - c, y - s); ctx.lineTo(x + s, y - s); ctx.lineTo(x + s, y - s + c);
+      ctx.moveTo(x - s, y + s - c); ctx.lineTo(x - s, y + s); ctx.lineTo(x - s + c, y + s);
+      ctx.moveTo(x + s - c, y + s); ctx.lineTo(x + s, y + s); ctx.lineTo(x + s, y + s - c);
+    }
+    var CODE = '4D5A90·0DAY·C0DE·BAADF00D·EBFE·';
+    function drawBoss() {
+      var a0 = g.intro > 0 ? 1 - g.intro / 2.4 : 1, x = g.x, y = g.y, R = g.R * (0.25 + 0.75 * a0), t = g.t, vul = g.vuln > 0, i, a, px, py;
+      if (g.dead) { a0 = Math.max(0, g.dead / 2 - 0.3); R *= 1 + (2 - g.dead) * 0.3; }
+      ctx.save(); ctx.globalAlpha = a0;
+      var gr = ctx.createRadialGradient(x, y, R * 0.2, x, y, R * 3.2);
+      gr.addColorStop(0, vul ? 'rgba(255,90,120,.5)' : 'rgba(255,60,90,.28)'); gr.addColorStop(1, 'rgba(255,60,90,0)');
+      ctx.fillStyle = gr; ctx.fillRect(x - R * 3.2, y - R * 3.2, R * 6.4, R * 6.4);
+      ctx.strokeStyle = 'rgba(255,130,150,.35)'; ctx.lineWidth = 1; ctx.beginPath();
+      g.nodes.forEach(function (n) { ctx.moveTo(x, y); ctx.lineTo(n.x, n.y); }); ctx.stroke();
+      ctx.beginPath();
+      for (i = 0; i < 28; i++) {
+        a = i / 28 * Math.PI * 2 + t * 0.5;
+        var rr = R * (i % 2 ? 0.78 : 1.2 + 0.1 * Math.sin(t * 6 + i));
+        if (Math.random() < 0.02) rr *= 1.25;
+        px = x + Math.cos(a) * rr; py = y + Math.sin(a) * rr; if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+      }
+      ctx.closePath(); ctx.fillStyle = '#1c040a'; ctx.fill(); ctx.strokeStyle = '#ff3b5c'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.beginPath();
+      for (i = 0; i < 6; i++) { a = i / 6 * Math.PI * 2 - t; px = x + Math.cos(a) * R * 0.6; py = y + Math.sin(a) * R * 0.6; if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+      ctx.closePath(); ctx.strokeStyle = 'rgba(255,170,185,.8)'; ctx.lineWidth = 1.5; ctx.stroke();
+      var pulse = 0.5 + 0.5 * Math.sin(t * (vul ? 14 : 4));
+      ctx.beginPath(); ctx.arc(x, y, R * (0.26 + 0.07 * pulse), 0, Math.PI * 2); ctx.fillStyle = vul ? '#ffe4e9' : '#ff3b5c'; ctx.fill();
+      if (g.nodes.length) {
+        ctx.setLineDash([6, 8]); ctx.lineDashOffset = -t * 30;
+        ctx.beginPath(); ctx.arc(x, y, R * 1.55, 0, Math.PI * 2); ctx.strokeStyle = 'rgba(159,208,200,.65)'; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+      }
+      ctx.font = '600 ' + Math.max(10, R * 0.24 | 0) + 'px "Chakra Petch", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = 'rgba(255,120,140,.75)';
+      for (i = 0; i < CODE.length; i++) {
+        a = i / CODE.length * Math.PI * 2 - t * 0.3;
+        ctx.save(); ctx.translate(x + Math.cos(a) * R * 1.95, y + Math.sin(a) * R * 1.95); ctx.rotate(a + Math.PI / 2); ctx.fillText(CODE.charAt(i), 0, 0); ctx.restore();
+      }
+      ctx.font = '600 11px "Chakra Petch", sans-serif';
+      g.nodes.forEach(function (n) {
+        var s = R * 0.42;
+        ctx.save(); ctx.translate(n.x, n.y); ctx.rotate(t * 2);
+        ctx.beginPath(); ctx.moveTo(0, -s); ctx.lineTo(s, 0); ctx.lineTo(0, s); ctx.lineTo(-s, 0); ctx.closePath();
+        ctx.fillStyle = n.hp < 2 ? '#6a1626' : '#2a070d'; ctx.fill(); ctx.strokeStyle = '#ffd9a0'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore();
+        ctx.fillStyle = '#ffd9a0'; ctx.fillText(n.tag, n.x, n.y + s + 12);
+      });
+      ctx.restore();
+    }
+    function draw() {
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      if (g.shake) ctx.translate(rnd(-g.shake, g.shake), rnd(-g.shake, g.shake));
+      drawBoss();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      g.packets.forEach(function (k) {
+        ctx.strokeStyle = 'rgba(255,90,110,' + (0.15 + 0.35 * k.p).toFixed(2) + ')'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(k.sx + (k.x - k.sx) * 0.6, k.sy + (k.y - k.sy) * 0.6); ctx.lineTo(k.x, k.y); ctx.stroke();
+        var r = k.r;
+        ctx.beginPath(); ctx.moveTo(k.x, k.y - r); ctx.lineTo(k.x + r * 0.7, k.y); ctx.lineTo(k.x, k.y + r); ctx.lineTo(k.x - r * 0.7, k.y); ctx.closePath();
+        ctx.fillStyle = 'rgba(255,59,92,' + (0.35 + 0.45 * k.p).toFixed(2) + ')'; ctx.fill(); ctx.strokeStyle = '#ffd0d8'; ctx.lineWidth = 1.5; ctx.stroke();
+        if (k.p > 0.65) { ctx.fillStyle = '#fff'; ctx.font = '700 ' + Math.round(r * 0.6) + 'px "Chakra Petch", sans-serif'; ctx.fillText('!', k.x, k.y + 1); }
+      });
+      g.parts.forEach(function (p) { ctx.globalAlpha = Math.min(1, p.life * 2); ctx.fillStyle = p.col; ctx.fillRect(p.x - 1.5, p.y - 1.5, 3, 3); });
+      ctx.globalAlpha = 1;
+      g.tracers.forEach(function (tr) {
+        ctx.strokeStyle = 'rgba(255,217,160,' + (tr.life / 0.08).toFixed(2) + ')'; ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.moveTo(tr.x0, tr.y0); ctx.lineTo(tr.x1, tr.y1); ctx.stroke();
+      });
+      ctx.font = '600 13px "Chakra Petch", sans-serif';
+      g.texts.forEach(function (tx) { ctx.globalAlpha = Math.min(1, tx.life * 1.5); ctx.fillStyle = tx.col; ctx.fillText(tx.s, tx.x, tx.y); });
+      ctx.globalAlpha = 1;
+      var ax = g.aim.x, ay = g.aim.y, lock = null;
+      if (!g.dead && g.intro <= 0) {
+        g.nodes.forEach(function (n) { if (!lock && dist(ax, ay, n.x, n.y) < g.R * 1.1) lock = { x: n.x, y: n.y, s: g.R * 0.75 }; });
+        if (!lock && dist(ax, ay, g.x, g.y) < g.R * 1.8) lock = { x: g.x, y: g.y, s: g.R * 1.45 };
+      }
+      if (lock) {
+        ctx.strokeStyle = '#ffd9a0'; ctx.lineWidth = 2; ctx.beginPath(); bracket(lock.x, lock.y, lock.s, lock.s * 0.35); ctx.stroke();
+        ctx.fillStyle = '#ffd9a0'; ctx.textAlign = 'left'; ctx.fillText('LOCK', lock.x + lock.s + 6, lock.y - lock.s + 8); ctx.textAlign = 'center';
+      }
+      var hot = g.over > 0;
+      ctx.strokeStyle = hot ? '#ff5d72' : '#bff7f5'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(ax, ay, 15, 0, Math.PI * 2);
+      ctx.moveTo(ax - 27, ay); ctx.lineTo(ax - 8, ay); ctx.moveTo(ax + 8, ay); ctx.lineTo(ax + 27, ay);
+      ctx.moveTo(ax, ay - 27); ctx.lineTo(ax, ay - 8); ctx.moveTo(ax, ay + 8); ctx.lineTo(ax, ay + 27); ctx.stroke();
+      ctx.fillStyle = hot ? '#ff5d72' : '#bff7f5'; ctx.fillRect(ax - 1.5, ay - 1.5, 3, 3);
+    }
+    function hideCombat() {
+      cancelAnimationFrame(raf); raf = 0; keys = {};
+      cv.hidden = true; bossBox.hidden = true; heatBox.hidden = true;
+      cockpit.classList.remove('sim-combat');
+    }
+
+    /* --- informe final --- */
+    function finish(won) {
+      hideCombat(); g = null; banner.classList.remove('on');
+      st.phase = 'end'; st.won = won; st.tEnd = Date.now();
+      if (won) { st.step = 7; renderSteps(); SFX.play('contain'); }
+      say(won ? E('Amenaza eliminada. Gracias por pilotar el MCO-01.', 'Threat eliminated. Thanks for piloting MCO-01.') : E('Integridad en cero. Puedes reintentar el combate.', 'Integrity at zero. You can retry the fight.'));
+      renderEnd(true);
+    }
+    function renderEnd(focus) {
+      card.hidden = false; card.textContent = '';
+      var won = st.won, secs = Math.round((st.tEnd - st.t0) / 1000);
+      var rank = !won ? '—' : st.mistakes === 0 && st.ap >= 70 ? 'S' : st.mistakes <= 1 && st.ap >= 45 ? 'A' : st.ap >= 25 ? 'B' : 'C';
+      var tag = el('p', 'sim-tag'); tag.appendChild(el('span', '', L(E('Informe de misión', 'Mission report')))); tag.appendChild(el('em', '', 'MCO-01'));
+      card.appendChild(tag);
+      var h = el('h2', '', won ? L(E('Amenaza eliminada. El MCO-01 vuelve a ser tuyo.', 'Threat eliminated. MCO-01 is yours again.')) : L(E('Sistema comprometido.', 'System compromised.')));
+      h.id = 'simTitle'; card.appendChild(h);
+      var rk = el('div', 'sim-rank'); rk.appendChild(el('b', '', rank));
+      var dl = el('dl');
+      [[E('Rango', 'Rank'), won ? rank : '—'], [E('Integridad final', 'Final integrity'), st.ap + '%'], [E('Decisiones erróneas', 'Wrong calls'), String(st.mistakes)], [E('Tiempo', 'Time'), Math.floor(secs / 60) + ':' + ('0' + secs % 60).slice(-2)]]
+        .forEach(function (row) { dl.appendChild(el('dt', '', L(row[0]))); dl.appendChild(el('dd', '', row[1])); });
+      rk.appendChild(dl); card.appendChild(rk);
+      card.appendChild(el('p', 'sim-q', won
+        ? L(E('Recorriste el ciclo de respuesta a incidentes del NIST: detectar, analizar, contener, erradicar, recuperar y aprender. Es el trabajo diario de un SOC.', 'You went through the NIST incident response cycle: detect, analyze, contain, eradicate, recover and learn. That is the daily work of a SOC.'))
+        : L(E('El virus agotó la integridad del mecha. Las decisiones del incidente ya están resueltas: puedes reintentar solo el combate.', 'The virus drained the mecha\'s integrity. The incident decisions are already solved: you can retry just the fight.'))));
+      if (won) {
+        var ul = el('ul', 'sim-learn');
+        ROUNDS.forEach(function (r, i) { var li = el('li'); li.appendChild(el('b', '', L(PHASES[i]) + ': ')); li.appendChild(document.createTextNode(L(r.concept))); ul.appendChild(li); });
+        card.appendChild(ul);
+      }
+      var bt = el('div', 'sim-btns');
+      function btn(label, cls, fn) { var b = el('button', cls, L(label)); b.type = 'button'; b.addEventListener('click', fn); bt.appendChild(b); return b; }
+      if (won) {
+        btn(E('Contactar al piloto', 'Contact the pilot'), 'sim-next', function () { stop(); openWin('comms', document.querySelector('.p-top')); });
+        btn(E('Jugar de nuevo', 'Play again'), 'sim-next ghost', function () { stop(); start(); });
+      } else {
+        btn(E('Reintentar combate', 'Retry fight'), 'sim-next', function () { card.hidden = true; setAp(60); st.phase = 'boss'; st.step = 6; renderSteps(); cockpit.classList.add('sim-combat'); initCombat(); });
+      }
+      btn(E('Volver a la cabina', 'Back to cockpit'), 'sim-next ghost', stop);
+      card.appendChild(bt);
+      if (focus) bt.firstChild.focus({ preventScroll: true });
+    }
+
+    /* --- salida --- */
+    function stop() {
+      if (!active) return;
+      active = false;
+      timers.forEach(clearTimeout); timers = [];
+      hideCombat(); g = null;
+      simEl.hidden = true; simEl.className = 'sim'; card.hidden = true; card.textContent = ''; banner.classList.remove('on');
+      cockpit.classList.remove('sim-on');
+      ROUNDS.forEach(function (r) { unpwn(r, false); });
+      clearTimeout(commsTimer); commsTimer = setTimeout(typeLine, 700);
+      startBtn.focus({ preventScroll: true });
+    }
+
+    /* --- controles --- */
+    startBtn.addEventListener('click', start);
+    quitBtn.addEventListener('click', stop);
+    function keyName(e) { return e.key.length === 1 ? e.key.toLowerCase() : e.key; }
+    document.addEventListener('keydown', function (e) {
+      if (!active || e.ctrlKey || e.metaKey || e.altKey) return;
+      var k = keyName(e);
+      if (k === 'Escape') { e.preventDefault(); stop(); return; }
+      if (st.phase === 'soc' && !st.solved && /^[abc123]$/.test(k) && !(e.target && e.target.tagName === 'INPUT')) {
+        var idx = 'abc'.indexOf(k); if (idx < 0) idx = '123'.indexOf(k);
+        var b = card.querySelectorAll('.sim-opts button')[idx]; if (b && !b.disabled) { e.preventDefault(); b.click(); }
+        return;
+      }
+      if (st.phase === 'boss' && g) {
+        if (/^(ArrowUp|ArrowDown|ArrowLeft|ArrowRight|w|a|s|d)$/.test(k)) { keys[k] = true; e.preventDefault(); }
+        else if (k === ' ' || k === 'Enter') { g.firing = true; e.preventDefault(); }
+      }
+    }, true);
+    document.addEventListener('keyup', function (e) {
+      if (!active) return;
+      var k = keyName(e); keys[k] = false;
+      if (g && (k === ' ' || k === 'Enter')) g.firing = false;
+    });
+    cv.addEventListener('pointermove', function (e) { if (g) { g.aim.x = e.clientX; g.aim.y = e.clientY; } });
+    cv.addEventListener('pointerdown', function (e) {
+      if (!g) return;
+      g.aim.x = e.clientX; g.aim.y = e.clientY; g.firing = true;
+      try { cv.setPointerCapture(e.pointerId); } catch (er) {}
+      e.preventDefault();
+    });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (n) { cv.addEventListener(n, function () { if (g) g.firing = false; }); });
+    window.addEventListener('blur', function () { keys = {}; if (g) g.firing = false; });
+    window.addEventListener('resize', function () { if (g) size(); });
+
+    function relang() {
+      startBtn.querySelector('small').textContent = L(E('Simulacro SOC', 'SOC drill'));
+      startBtn.setAttribute('aria-label', L(E('Iniciar simulacro de ciberataque: modo juego', 'Start cyberattack drill: game mode')));
+      quitBtn.textContent = L(E('Salir [Esc]', 'Exit [Esc]'));
+      $('simApLbl').textContent = L(E('Integridad', 'Integrity'));
+      heatKeys.textContent = L(E('Clic o espacio: disparar · flechas: apuntar', 'Click or space: fire · arrows: aim'));
+      cv.setAttribute('aria-label', L(E('Combate contra el virus: apunta con el mouse o las flechas y dispara con clic o espacio.', 'Fight against the virus: aim with the mouse or arrow keys and fire with click or space.')));
+      if (!active) return;
+      renderSteps();
+      ROUNDS.forEach(function (r) { var pod = r.pod && document.querySelector(r.pod); if (pod && pod.classList.contains('pwned')) pwn(r); });
+      if (st.phase === 'soc') renderRound(false);
+      else if (st.phase === 'end') renderEnd(false);
+      if (g && g.over > 0) overEl.textContent = L(E('Sobrecalentado', 'Overheat'));
+    }
+    relang();
+    return { isActive: function () { return active; }, relang: relang, stop: stop };
+  })();
 
   /* --- Arranque --- */
   if (mode === 'pro') enterPro();
