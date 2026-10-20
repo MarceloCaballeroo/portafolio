@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-6v0h8YbD1cLdrRLInQFARSF2XSguEwenmzac0pXMPbs='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-zT0NZ/BJwQFNsJZNsjwFLSd6OC7zRKdlPAMlxB3B0zM='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
-<meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Busco práctica profesional o pasantía.">
+<meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/chakra-petch-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -225,6 +225,11 @@ a.tag:hover, a.tag:focus-visible { border-color: var(--teal); color: #fff; }
 .layers span { display: block; color: var(--fog); font-size: var(--fs-small); margin-top: 2px; }
 .project .note { margin-top: 20px; font-size: var(--fs-small); color: var(--fog); }
 .project > .tags { margin-top: 32px; }
+.arch { width: min(100%, 820px); margin: 36px auto 0; }
+.arch a { display: block; border: 1px solid var(--line-soft); border-radius: 8px; overflow: hidden; transition: border-color .3s; }
+.arch a:hover { border-color: var(--teal); }
+.arch img { display: block; width: 100%; height: auto; }
+.arch figcaption { margin-top: 10px; text-align: center; font-size: var(--fs-small); color: var(--fog); }
 
 /* ---------- Logros y habilidades ---------- */
 .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px 80px; margin-top: 64px; }
@@ -676,7 +681,13 @@ a.key { text-decoration: none; color: inherit; }
 /* =========================================================
    Simulacro SOC: botón START, incidente guiado y combate final
    ========================================================= */
-.start-btn.hud { position: fixed; z-index: 8; top: 6px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 9px; height: 32px; padding: 0 14px 0 12px; cursor: pointer;
+.top-cta { position: fixed; z-index: 8; top: 6px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+.cv-btn.hud { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; cursor: pointer; font: 600 12px var(--hud); letter-spacing: .14em; text-transform: uppercase;
+  color: #d6ebe8; background: #03080a; border: 1px solid rgba(95, 180, 176, .6); border-radius: 4px; transition: border-color .2s, box-shadow .2s; }
+.cv-btn.hud svg { width: 15px; height: 15px; fill: none; stroke: var(--h-cyan); stroke-width: 1.7; stroke-linejoin: round; }
+.cv-btn.hud small { font-size: 10px; color: #7f9aa0; letter-spacing: .08em; }
+.cv-btn.hud:hover, .cv-btn.hud:focus-visible { outline: none; border-color: #bff7f5; box-shadow: 0 0 14px rgba(95, 180, 176, .35); }
+.start-btn.hud { display: inline-flex; align-items: center; gap: 9px; height: 32px; padding: 0 14px 0 12px; cursor: pointer;
   font: 700 13px var(--hud); letter-spacing: .22em; color: #ffd9a0; background: linear-gradient(#3a1d08, #160b03); border: 1px solid rgba(212, 154, 76, .75); border-radius: 4px;
   box-shadow: 0 0 14px rgba(212, 140, 60, .32), inset 0 1px 0 rgba(255, 220, 170, .18); transition: box-shadow .2s, border-color .2s; }
 .start-btn.hud i { font-style: normal; font-size: 10px; color: #ff6b5a; animation: startBlink 1.4s steps(1) infinite; }
@@ -795,13 +806,13 @@ a.key { text-decoration: none; color: inherit; }
 #cockpit.sim-on .stage { pointer-events: none; }
 #cockpit.sim-on .eject, #cockpit.sim-on .console { opacity: .5; transition: opacity .4s; }
 #cockpit.sim-combat .stage { opacity: .22; transition: opacity .6s; }
-#cockpit.sim-on .look-hint, #cockpit.sim-on .start-btn { visibility: hidden; }
+#cockpit.sim-on .look-hint, #cockpit.sim-on .top-cta { visibility: hidden; }
 #cockpit.sim-on .snd-btn.hud, #cockpit.sim-on .lang-btn.hud { z-index: 10; }
 @media (prefers-reduced-motion: reduce) {
   .start-btn.hud i, .sim.alarm .sim-red, .hack-ov, .sim-card.shake, .pod.fixed .in { animation: none; }
 }
 @media (max-width: 900px), (max-aspect-ratio: 5/4) {
-  .start-btn.hud { left: 4vw; transform: none; }
+  .top-cta { left: 4vw; transform: none; }
   .sim-top { top: 48px; flex-wrap: wrap; gap: 8px 12px; }
   .sim-steps { order: 3; flex-basis: 100%; }
   .sim-steps li { padding: 4px 2px; font-size: 9px; letter-spacing: .04em; }
@@ -815,7 +826,9 @@ a.key { text-decoration: none; color: inherit; }
   .sim-tool b { font-size: 9.5px; }
   .sim-tool kbd { padding: 1px 4px; font-size: 10px; }
 }
-@media (max-width: 480px) { .start-btn.hud small { display: none; } .sim-heat .bar { width: 140px; } }
+@media (max-width: 1180px) and (min-width: 901px) and (min-aspect-ratio: 5/4) { .heading { display: none; } }
+@media (max-width: 1500px) { .hull-tag em { display: none; } }
+@media (max-width: 480px) { .start-btn.hud small, .cv-btn.hud small { display: none; } .sim-heat .bar { width: 140px; } }
 @media (max-width: 980px) { .sim-heat kbd { display: none; } }
 
 /* --- Arranque del sistema M.C.O. (solo en la primera visita) --- */
@@ -1133,7 +1146,10 @@ a.key { text-decoration: none; color: inherit; }
     <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="w" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
   </button>
   <p class="hull-tag" aria-hidden="true"><em>MONITOR PANORÁMICO 360°</em><small>CABECEO</small><b id="pitchVal">+00°</b></p>
+  <div class="top-cta">
+  <button class="cv-btn hud" type="button" data-mode="pro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6zM14 3v5h5M9 12h8M9 16h8M9 8h3"/></svg>CV clásico<small>[P]</small></button>
   <button class="start-btn hud" type="button" id="startBtn"><i aria-hidden="true">&#9654;</i>START<small>Simulacro SOC</small></button>
+  </div>
   <div class="sim" id="sim" hidden>
     <div class="sim-red" aria-hidden="true"></div>
     <canvas class="sim-cv" id="simCv" tabindex="-1" hidden></canvas>
@@ -1167,12 +1183,12 @@ a.key { text-decoration: none; color: inherit; }
 
     <div class="pod p-top" style="--d:.55s">
       <div class="frame"></div>
-      <button class="panel" type="button" data-open="comms" data-say="Objetivo de misión: busco práctica profesional o pasantía en ciberseguridad, seguridad para IA o cloud, en modalidad híbrida o remota. Pulsa para abrir el canal de contacto." aria-label="Objetivo de misión: práctica profesional o pasantía. Abrir contacto.">
+      <button class="panel" type="button" data-open="comms" data-say="Objetivo de misión: abierto a la próxima oportunidad en ciberseguridad, seguridad para IA o cloud, en modalidad híbrida o remota. Hoy hago mi práctica en LATAM Airlines. Pulsa para abrir el canal de contacto." aria-label="Objetivo de misión: próxima oportunidad. Abrir contacto.">
         <span class="in">
           <svg width="74" height="74" viewBox="0 0 74 74" aria-hidden="true"><circle cx="37" cy="37" r="30" fill="none" stroke="#5fb4b0" stroke-width="1.5" stroke-dasharray="4 5"/><circle cx="37" cy="37" r="14" fill="none" stroke="#d49a4c" stroke-width="2"/><path d="M37 0v20M37 54v20M0 37h20M54 37h20" stroke="#5fb4b0" stroke-width="1.5"/></svg>
           <span style="display:block">
             <span class="hud-k" style="display:block">Objetivo de misión · Híbrida o remota</span>
-            <span class="hud-v" style="display:block">Práctica profesional o pasantía</span>
+            <span class="hud-v" style="display:block">Próxima oportunidad</span>
             <span class="hud-k" style="display:block;margin-top:6px;color:#d49a4c">Ciberseguridad / IA / Cloud</span>
           </span>
         </span>
@@ -1181,9 +1197,9 @@ a.key { text-decoration: none; color: inherit; }
 
     <div class="pod p-gl" style="--d:.7s">
       <div class="frame"></div>
-      <button class="panel" type="button" data-open="misiones" data-say="Último despliegue: IBM Chile, Endpoint Security Specialist L2. Administré XDR/EDR sobre 24.000 endpoints y 3.000 servidores. Pulsa para ver todas las misiones." aria-label="Último despliegue en IBM Chile: 24.000 endpoints. Abrir misiones.">
+      <button class="panel" type="button" data-open="misiones" data-say="Despliegue destacado: IBM Chile, Endpoint Security Specialist L2. Administré XDR/EDR sobre 24.000 endpoints y 3.000 servidores. Pulsa para ver todas las misiones." aria-label="Despliegue destacado en IBM Chile: 24.000 endpoints. Abrir misiones.">
         <span class="in">
-          <span class="hd">Último despliegue <i></i></span>
+          <span class="hd">Despliegue destacado <i></i></span>
           <span class="sub-h">IBM Chile · Endpoint Security L2</span>
           <span class="gauge">
             <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
@@ -1206,14 +1222,14 @@ a.key { text-decoration: none; color: inherit; }
 
     <div class="pod p-gr" style="--d:.8s">
       <div class="frame"></div>
-      <button class="panel" type="button" data-open="licencias" data-say="Licencias de vuelo: 14 certificaciones de Microsoft, AWS, Cisco, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación." aria-label="Licencias de vuelo: 14 certificaciones. Abrir licencias.">
+      <button class="panel" type="button" data-open="licencias" data-say="Licencias de vuelo: 12 certificaciones de Microsoft, AWS, Cisco, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación." aria-label="Licencias de vuelo: 12 certificaciones. Abrir licencias.">
         <span class="in">
           <span class="hd"><i></i> Licencias de vuelo</span>
           <span class="sub-h" style="text-align:right">Certificaciones por emisor</span>
           <span class="gauge">
             <span class="rows-h">
-              <span><svg><use href="#i-microsoft"/></svg>Microsoft <b>6</b></span>
-              <span><svg><use href="#i-amazonaws"/></svg>AWS <b>2</b></span>
+              <span><svg><use href="#i-microsoft"/></svg>Microsoft <b>5</b></span>
+              <span><svg><use href="#i-amazonaws"/></svg>AWS <b>1</b></span>
               <span><svg><use href="#i-cisco"/></svg>Cisco <b>2</b></span>
               <span>Otras <b>4</b></span>
             </span>
@@ -1222,7 +1238,7 @@ a.key { text-decoration: none; color: inherit; }
               <circle cx="60" cy="60" r="47" fill="none" stroke="rgba(95,180,176,.18)" stroke-width="7"/>
               <circle cx="60" cy="60" r="47" fill="none" stroke="#86c9a8" stroke-width="7" stroke-dasharray="295 296" transform="rotate(-90 60 60)"/>
               <circle class="spin" cx="60" cy="60" r="36" fill="none" stroke="#d49a4c" stroke-opacity=".7" stroke-width="1.5" stroke-dasharray="20 8"/>
-              <text x="60" y="66" text-anchor="middle" fill="#dfeeec" font-size="30" font-weight="700" font-family="Chakra Petch">14</text>
+              <text x="60" y="66" text-anchor="middle" fill="#dfeeec" font-size="30" font-weight="700" font-family="Chakra Petch">12</text>
               <text x="60" y="82" text-anchor="middle" fill="#86b3b2" font-size="9" letter-spacing="1.5" font-family="Chakra Petch">CERTIFIC.</text>
             </svg>
           </span>
@@ -1453,7 +1469,7 @@ a.key { text-decoration: none; color: inherit; }
     </div>
     <div class="console r" style="--d:.4s">
       <button class="key" type="button" data-open="arsenal" data-say="Arsenal: todas mis habilidades técnicas en seguridad, cloud, sistemas y datos."><b>Arsenal</b><small>[5] Habilidades</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-5M13 5l6 6-7 7-6-6zM15 3l6 6"/></svg><i class="led" aria-hidden="true"></i></button>
-      <button class="key" type="button" data-open="licencias" data-say="Licencias: mis 14 certificaciones y mi formación académica."><b>Licencias</b><small>[6] Certificados</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="8.5" cy="12" r="2"/><path d="M13 10h5M13 14h4"/></svg><i class="led" aria-hidden="true"></i></button>
+      <button class="key" type="button" data-open="licencias" data-say="Licencias: mis 12 certificaciones y mi formación académica."><b>Licencias</b><small>[6] Certificados</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="8.5" cy="12" r="2"/><path d="M13 10h5M13 14h4"/></svg><i class="led" aria-hidden="true"></i></button>
       <button class="key" type="button" data-open="comms" data-say="Comms: correo, LinkedIn, GitHub, Credly y mi CV en PDF."><b>Comms</b><small>[7] Contacto</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11v10M8 21h8M8.5 8.5a5 5 0 0 1 7 0M5.5 5.5a9 9 0 0 1 13 0"/><circle cx="12" cy="11" r="1.2"/></svg><i class="led" aria-hidden="true"></i></button>
       <a class="key key-gh" href="https://github.com/MarceloCaballeroo" target="_blank" rel="noopener noreferrer" data-say="GitHub: abre mis repositorios en una pestaña nueva."><b>GitHub</b><small>[8] Repos</small><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg><i class="led" aria-hidden="true"></i></a>
     </div>
@@ -1491,7 +1507,7 @@ a.key { text-decoration: none; color: inherit; }
     <dt>Especialidad</dt><dd>Ciberseguridad, seguridad para sistemas de IA y cloud security</dd>
     <dt>Formación</dt><dd>Ingeniería en Informática, Duoc UC (2025 – hoy)</dd>
     <dt>Idiomas</dt><dd>Español nativo, inglés B1–B2</dd>
-    <dt>Rol actual</dt><dd>AWS Cloud Club Captain y líder de ciberseguridad, Duoc UC</dd>
+    <dt>Rol actual</dt><dd>Práctica en Auditoría y Control Interno, LATAM Airlines</dd>
     <dt>Afinidad</dt><dd class="fav">Mobile Suit Gundam. Por eso esta cabina.</dd>
   </dl>
 </template>
@@ -1518,12 +1534,12 @@ a.key { text-decoration: none; color: inherit; }
     <div class="hero-id fade d1">
       <span class="avatar"><img src="img/marcelo.webp" width="288" height="288" alt="Foto de Marcelo Caballero"></span>
       <div>
-        <p class="status"><i aria-hidden="true"></i>Disponible para práctica profesional o pasantía</p>
+        <p class="status"><i aria-hidden="true"></i>Abierto a la próxima oportunidad en ciberseguridad, IA y cloud</p>
         <p class="status-sub">Modalidad híbrida o remota, desde Santiago de Chile</p>
       </div>
     </div>
     <h1 class="name"><span class="ln"><span>Marcelo</span></span><span class="ln"><span>Caballero</span></span></h1>
-    <p class="lead fade d2">Estudiante de Ingeniería en Informática. Administré EDR/XDR en un entorno de más de 24.000 endpoints y hoy lidero una comunidad de ciberseguridad y cloud de más de 100 personas.</p>
+    <p class="lead fade d2">Estudiante de Ingeniería en Informática. Hoy hago mi práctica en Auditoría y Control Interno en LATAM Airlines, en paralelo con mi capstone PodoCare. Antes administré EDR/XDR sobre más de 24.000 endpoints en IBM y lideré una comunidad de ciberseguridad y cloud de más de 100 personas.</p>
     <div class="actions fade d3">
       <a class="btn solid" href="Marcelo-Caballero-CV.pdf" download><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M11 3h2v9.2l3.3-3.3 1.4 1.4L12 16l-5.7-5.7 1.4-1.4 3.3 3.3V3ZM4 18h16v2H4z"/></svg>Descargar CV (PDF)</a>
       <a class="btn" href="#contacto">Hablemos</a>
@@ -1598,23 +1614,35 @@ a.key { text-decoration: none; color: inherit; }
     <div class="track" aria-hidden="true"></div>
 
     <article class="job">
+      <p class="when"><strong>2026 – hoy</strong>Santiago<br>Práctica profesional</p>
+      <div>
+        <h3>Práctica en Auditoría y Control Interno</h3>
+        <p class="org">LATAM Airlines</p>
+        <ul>
+          <li>Práctica profesional en el área de Auditoría y Control Interno, en paralelo con el desarrollo de mi proyecto de título PodoCare.</li>
+        </ul>
+        <div class="tags"><span class="tag">Auditoría</span><span class="tag">Control interno</span><span class="tag">Gestión de riesgos</span></div>
+      </div>
+    </article>
+
+    <article class="job">
       <p class="when"><strong>Ene 2025 – Feb 2026</strong>Las Condes, Santiago</p>
       <div>
         <h3>Endpoint Security Specialist L2</h3>
         <p class="org">IBM Chile</p>
         <ul>
-          <li>Administración y optimización de dos plataformas XDR/EDR (CrowdStrike Falcon y Trend Micro Vision One) en un entorno multinacional de más de 24.000 endpoints y 3.000 servidores.</li>
-          <li>Diseño e implementación de playbooks de contención, respuesta a incidentes y threat hunting sobre activos críticos.</li>
-          <li>Gestión de incidentes en endpoints: triage, análisis de impacto, correlación de eventos, contención y coordinación con equipos SOC del cliente.</li>
-          <li>Automatización de controles operativos con Python y Bash para bajar tiempos de respuesta y errores manuales.</li>
-          <li>Dashboards en Looker Studio para KPIs de seguridad y SLAs, más reportes ejecutivos de postura y cobertura EDR.</li>
+          <li>Gestión de la plataforma XDR/EDR (CrowdStrike Falcon y Trend Micro Vision One) sobre más de 24.000 endpoints y 3.000 servidores en un entorno multinacional.</li>
+          <li>Unos 20 incidentes semanales propios de punta a punta, con apoyo a los equipos SOC y CIEM del cliente.</li>
+          <li>Tuning de playbooks de contención y respuesta para equipos legacy, incluidos servidores con Windows 2000.</li>
+          <li>Automatización de tareas operativas con Python y Bash a través de las API de las plataformas.</li>
+          <li>Dashboards cruzados en Microsoft Fabric y Looker Studio, con datos consolidados en Excel y BigQuery, para el cliente final.</li>
         </ul>
-        <div class="tags"><span class="tag">CrowdStrike Falcon</span><span class="tag">Trend Micro Vision One</span><span class="tag">Threat hunting</span><span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Looker Studio</span></div>
+        <div class="tags"><span class="tag">CrowdStrike Falcon</span><span class="tag">Trend Micro Vision One</span><span class="tag">Incident response</span><span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Microsoft Fabric</span><span class="tag">Looker Studio</span><span class="tag">BigQuery</span></div>
       </div>
     </article>
 
     <article class="job">
-      <p class="when"><strong>Sep 2024 – Ago 2026</strong>La Florida, Santiago<br>Ad honorem</p>
+      <p class="when"><strong>Sep 2024 – Ago 2025</strong>La Florida, Santiago<br>Ad honorem</p>
       <div>
         <h3>AWS Cloud Club Captain y Líder de Ciberseguridad</h3>
         <p class="org">Duoc UC</p>
@@ -1622,8 +1650,9 @@ a.key { text-decoration: none; color: inherit; }
           <li>Programa formativo en cloud security (AWS IAM, EC2, S3, RDS) y ciberseguridad aplicada, con Zero Trust y gestión de accesos.</li>
           <li>Workshops de incident response, vulnerability management, threat intelligence y gestión de riesgos tecnológicos.</li>
           <li>Capacitación en protección de datos y ciberseguridad para instituciones públicas, incluida Carabineros de Chile.</li>
+          <li>Clases de fundamentos para la certificación AWS Cloud Practitioner y una introducción a Amazon Bedrock.</li>
         </ul>
-        <div class="tags"><span class="tag">AWS</span><span class="tag">Zero Trust</span><span class="tag">Incident response</span><span class="tag">Formación</span></div>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">Zero Trust</span><span class="tag">Incident response</span><span class="tag">Amazon Bedrock</span><span class="tag">Formación</span></div>
       </div>
     </article>
 
@@ -1687,6 +1716,10 @@ a.key { text-decoration: none; color: inherit; }
           <p class="note">Incluye ficha clínica con mapa 3D del pie, agenda que impide la doble reserva y CI en GitHub Actions.</p>
         </div>
       </div>
+      <figure class="arch">
+        <a href="img/podocare-arquitectura.svg" target="_blank" rel="noopener noreferrer"><img src="img/podocare-arquitectura.svg" width="1112" height="865" loading="lazy" alt="Diagrama de arquitectura de PodoCare: navegador, Next.js con proxy de sesión y Server Actions, y Supabase con PostgreSQL con RLS, Auth con TOTP y bitácora inmutable"></a>
+        <figcaption>Arquitectura por capas, del README del repositorio. Haz clic para ampliarla.</figcaption>
+      </figure>
       <div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Row Level Security</span><span class="tag">Tailwind CSS 4</span><span class="tag">three.js</span><span class="tag">zod</span><span class="tag">Docker</span><span class="tag">Vercel</span><span class="tag">GitHub Actions</span></div>
     </article>
   </div>
@@ -1700,10 +1733,13 @@ a.key { text-decoration: none; color: inherit; }
       <h3 class="h3s">Reconocimientos</h3>
       <ul class="awards">
         <li><span class="place">1º</span><div><p>CTF Intercede Duoc UC, ofensiva a nivel nacional</p><p class="mute">Arkavia Networks</p></div></li>
-        <li><span class="place">9º</span><div><p>Ejercicio de Ciberdefensa Llaitún 2024</p><p class="mute">Ejército de Chile. Top 10% entre 60 equipos</p></div></li>
+        <li><span class="place">9º</span><div><p>Ejercicio de Ciberdefensa Llaitún 2024</p><p class="mute">Ejército de Chile. 9º lugar entre 60 equipos a nivel nacional, defendiendo infraestructura crítica simulada: cámaras, grúa y sistema de agua.</p></div></li>
         <li><span class="place">2º 3º</span><div><p>Botathon 2024 y 2025</p><p class="mute">Automation Anywhere y BluePrism</p></div></li>
         <li><span class="place">1º</span><div><p>Competencia CITTRIUM de Robótica</p><p class="mute">Duoc UC</p></div></li>
-        <li><span class="place word">Speaker</span><div><p>Charlas AWS y workshops de Azure y OpenAI</p><p class="mute">Microsoft Student Ambassador</p></div></li>
+        <li><span class="place word">Speaker</span><div><p>Seguridad en la era de la IA</p><p class="mute">Charla en Duoc UC, sede Plaza Vespucio</p></div></li>
+        <li><span class="place word">Speaker</span><div><p>Charlas AWS y workshops de Azure y OpenAI</p><p class="mute">AWS Cloud Club y Microsoft Student Ambassadors</p></div></li>
+        <li><span class="place word">AWS</span><div><p>AWS Cloud Club Captain</p><p class="mute">Duoc UC · <a href="https://www.credly.com/badges/edbb38d4-259d-459a-bffa-57a43628c1d4/public_url" target="_blank" rel="noopener noreferrer">Insignia en Credly</a></p></div></li>
+        <li><span class="place word">MLSA</span><div><p>Microsoft Learn Student Ambassador</p><p class="mute">Microsoft · <a href="https://www.credly.com/badges/675bf30a-c31b-43ee-96da-eddb15e1581f/public_url" target="_blank" rel="noopener noreferrer">Insignia en Credly</a></p></div></li>
       </ul>
     </div>
     <div>
@@ -1729,16 +1765,16 @@ a.key { text-decoration: none; color: inherit; }
   <h2 class="h2">Lo que respalda el trabajo.</h2>
   <div class="split">
     <div>
-      <h3 class="h3s">14 certificaciones</h3>
-      <p class="cert-note">Las insignias enlazadas se verifican en <a href="https://www.credly.com/users/marcelo-ignacio-caballero-olave" target="_blank" rel="noopener noreferrer">mi perfil de Credly</a>.</p>
+      <h3 class="h3s">12 certificaciones</h3>
+      <p class="cert-note">Cada certificación enlazada abre su verificación. Perfiles: <a href="https://www.credly.com/users/marcelo-ignacio-caballero-olave" target="_blank" rel="noopener noreferrer">Credly</a> · <a href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
       <ul class="issuers">
-        <li><p class="issuer">Microsoft<small>6</small></p><div class="tags"><span class="tag">SC-900 Security, Compliance &amp; Identity</span><a class="tag" href="https://www.credly.com/badges/57d22637-02ed-4f62-9abb-d5fea46fbf0c/public_url" target="_blank" rel="noopener noreferrer">AZ-900 Azure Fundamentals</a><a class="tag" href="https://www.credly.com/badges/03381d05-5e60-4091-965c-7aa470fd26e0/public_url" target="_blank" rel="noopener noreferrer">AI-900 Azure AI Fundamentals</a><a class="tag" href="https://www.credly.com/badges/6ce5affe-2b13-4de4-8720-b50f913e20bd/public_url" target="_blank" rel="noopener noreferrer">DP-900 Azure Data Fundamentals</a><span class="tag">Foundational C#</span><a class="tag" href="https://www.credly.com/badges/675bf30a-c31b-43ee-96da-eddb15e1581f/public_url" target="_blank" rel="noopener noreferrer">Student Ambassador</a></div></li>
-        <li><p class="issuer">AWS<small>2</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/3ad8c0b3-732c-450d-9f49-6c05ebe049dd/public_url" target="_blank" rel="noopener noreferrer">Cloud Practitioner (CLF-C02)</a><a class="tag" href="https://www.credly.com/badges/edbb38d4-259d-459a-bffa-57a43628c1d4/public_url" target="_blank" rel="noopener noreferrer">Cloud Club Captain</a></div></li>
+        <li><p class="issuer">Microsoft<small>5</small></p><div class="tags"><span class="tag">SC-900 Security, Compliance &amp; Identity</span><a class="tag" href="https://www.credly.com/badges/57d22637-02ed-4f62-9abb-d5fea46fbf0c/public_url" target="_blank" rel="noopener noreferrer">AZ-900 Azure Fundamentals</a><a class="tag" href="https://www.credly.com/badges/03381d05-5e60-4091-965c-7aa470fd26e0/public_url" target="_blank" rel="noopener noreferrer">AI-900 Azure AI Fundamentals</a><a class="tag" href="https://www.credly.com/badges/6ce5affe-2b13-4de4-8720-b50f913e20bd/public_url" target="_blank" rel="noopener noreferrer">DP-900 Azure Data Fundamentals</a><a class="tag" href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">Foundational C#</a></div></li>
+        <li><p class="issuer">AWS<small>1</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/3ad8c0b3-732c-450d-9f49-6c05ebe049dd/public_url" target="_blank" rel="noopener noreferrer">Cloud Practitioner (CLF-C02)</a></div></li>
         <li><p class="issuer">Cisco<small>2</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/b19c2ef1-5693-4b87-9429-151ea1d4c646/public_url" target="_blank" rel="noopener noreferrer">CCST Cybersecurity</a><a class="tag" href="https://www.credly.com/badges/644c08cb-0a8a-44c9-8c88-b7f24e517345/public_url" target="_blank" rel="noopener noreferrer">CCST Networking</a></div></li>
-        <li><p class="issuer">Oracle<small>1</small></p><div class="tags"><span class="tag">OCI Foundations Associate</span></div></li>
+        <li><p class="issuer">Oracle<small>1</small></p><div class="tags"><a class="tag" href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">OCI Foundations Associate</a></div></li>
         <li><p class="issuer">IBM<small>1</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/683811cb-55a9-495f-b4a8-c4bc4a11a9e9/public_url" target="_blank" rel="noopener noreferrer">Generative AI Fundamentals</a></div></li>
         <li><p class="issuer">Google<small>1</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/0a07bd0b-6461-485f-a24c-f6ff3065e55d/public_url" target="_blank" rel="noopener noreferrer">Google Data Analytics</a></div></li>
-        <li><p class="issuer">Otras<small>1</small></p><div class="tags"><span class="tag">Ethical Hacking Professional (CEHPC)</span></div></li>
+        <li><p class="issuer">Otras<small>1</small></p><div class="tags"><a class="tag" href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">Ethical Hacking Professional (CEHPC)</a></div></li>
       </ul>
     </div>
     <div>
@@ -1756,7 +1792,7 @@ a.key { text-decoration: none; color: inherit; }
 
 <!-- CONTACTO -->
 <section id="contacto" class="sec shell contact">
-  <h2 class="h2">Busco práctica profesional o pasantía.</h2>
+  <h2 class="h2">Abierto a la próxima oportunidad.</h2>
   <p class="lead mute" style="margin-top:24px">Ciberseguridad, seguridad para sistemas de IA o cloud security. Escríbeme y conversamos.</p>
   <button class="mail js-copy js-mail-text" type="button">marcelo.caballeroolave [arroba] gmail [punto] com</button>
   <span class="copied js-copied" role="status">Haz clic para copiar el correo</span>
@@ -1765,7 +1801,7 @@ a.key { text-decoration: none; color: inherit; }
     <a class="btn" href="Marcelo-Caballero-CV.pdf" download><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M11 3h2v9.2l3.3-3.3 1.4 1.4L12 16l-5.7-5.7 1.4-1.4 3.3 3.3V3ZM4 18h16v2H4z"/></svg>Descargar CV</a>
     <a class="btn" href="https://www.linkedin.com/in/marcelo-caballero-olave" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a class="btn" href="https://github.com/MarceloCaballeroo" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a class="btn" href="https://www.credly.com/users/marcelo-caballero" target="_blank" rel="noopener noreferrer">Credly</a>
+    <a class="btn" href="https://www.credly.com/users/marcelo-ignacio-caballero-olave" target="_blank" rel="noopener noreferrer">Credly</a>
   </div>
   <div class="contact-grid">
     <div><p>Modalidad</p><p>Híbrida o remota</p></div>
@@ -1856,6 +1892,29 @@ a.key { text-decoration: none; color: inherit; }
   var fmt = function (n) { return Math.round(n).toLocaleString(LANG === 'en' ? 'en-US' : 'es-CL'); };
   /* --- Idioma: español por defecto; inglés con el botón EN o ?lang=en (se recuerda) --- */
   var I18N = {
+    "Diagrama de arquitectura de PodoCare: navegador, Next.js con proxy de sesión y Server Actions, y Supabase con PostgreSQL con RLS, Auth con TOTP y bitácora inmutable": "PodoCare architecture diagram: browser, Next.js with session proxy and Server Actions, and Supabase with PostgreSQL with RLS, Auth with TOTP and an immutable audit log",
+    "Arquitectura por capas, del README del repositorio. Haz clic para ampliarla.": "Layered architecture, from the repository README. Click to enlarge.",
+    "2026 – hoy": "2026 – present",
+    "Práctica profesional": "Internship",
+    "Práctica en Auditoría y Control Interno": "Audit and Internal Control Intern",
+    "Práctica profesional en el área de Auditoría y Control Interno, en paralelo con el desarrollo de mi proyecto de título PodoCare.": "Internship in the Audit and Internal Control area, alongside the development of my PodoCare capstone project.",
+    "Auditoría": "Audit",
+    "Control interno": "Internal control",
+    "Gestión de la plataforma XDR/EDR (CrowdStrike Falcon y Trend Micro Vision One) sobre más de 24.000 endpoints y 3.000 servidores en un entorno multinacional.": "Managed the XDR/EDR platform (CrowdStrike Falcon and Trend Micro Vision One) across more than 24,000 endpoints and 3,000 servers in a multinational environment.",
+    "Unos 20 incidentes semanales propios de punta a punta, con apoyo a los equipos SOC y CIEM del cliente.": "Owned about 20 incidents a week end to end, supporting the client's SOC and CIEM teams.",
+    "Tuning de playbooks de contención y respuesta para equipos legacy, incluidos servidores con Windows 2000.": "Tuned containment and response playbooks for legacy assets, including Windows 2000 servers.",
+    "Automatización de tareas operativas con Python y Bash a través de las API de las plataformas.": "Automated operational tasks with Python and Bash through the platforms' APIs.",
+    "Dashboards cruzados en Microsoft Fabric y Looker Studio, con datos consolidados en Excel y BigQuery, para el cliente final.": "Cross-source dashboards in Microsoft Fabric and Looker Studio, with data consolidated in Excel and BigQuery, for the end client.",
+    "Clases de fundamentos para la certificación AWS Cloud Practitioner y una introducción a Amazon Bedrock.": "Taught fundamentals for the AWS Cloud Practitioner certification and an introduction to Amazon Bedrock.",
+    "Ejército de Chile. 9º lugar entre 60 equipos a nivel nacional, defendiendo infraestructura crítica simulada: cámaras, grúa y sistema de agua.": "Chilean Army. 9th place out of 60 teams nationwide, defending simulated critical infrastructure: cameras, a crane and a water system.",
+    "Seguridad en la era de la IA": "Security in the age of AI",
+    "Charla en Duoc UC, sede Plaza Vespucio": "Talk at Duoc UC, Plaza Vespucio campus",
+    "AWS Cloud Club y Microsoft Student Ambassadors": "AWS Cloud Club and Microsoft Student Ambassadors",
+    "Duoc UC ·": "Duoc UC ·",
+    "Microsoft ·": "Microsoft ·",
+    "Insignia en Credly": "Credly badge",
+    "Cada certificación enlazada abre su verificación. Perfiles:": "Each linked certification opens its verification. Profiles:",
+    "CV clásico": "Classic CV",
     "Activar sonido": "Turn sound on",
     "Silenciar sonido": "Mute sound",
     "Sistema de control táctico · rev. 26.10": "Tactical control system · rev. 26.10",
@@ -1892,9 +1951,9 @@ a.key { text-decoration: none; color: inherit; }
     "Mueve el mouse para mirar alrededor · 360°": "Move the mouse to look around · 360°",
     "Desliza de lado para mirar alrededor · 360°": "Swipe sideways to look around · 360°",
     "Objetivo de misión · Híbrida o remota": "Mission objective · Hybrid or remote",
-    "Práctica profesional o pasantía": "Internship",
+    "Próxima oportunidad": "Next opportunity",
     "Ciberseguridad / IA / Cloud": "Cybersecurity / AI / Cloud",
-    "Último despliegue": "Latest deployment",
+    "Despliegue destacado": "Featured deployment",
     "IBM Chile · Endpoint Security L2": "IBM Chile · Endpoint Security L2",
     "Servidores": "Servers",
     "Abrir misiones ›": "Open missions ›",
@@ -1946,16 +2005,16 @@ a.key { text-decoration: none; color: inherit; }
     "Idiomas": "Languages",
     "Español nativo, inglés B1–B2": "Native Spanish, English B1–B2",
     "Rol actual": "Current role",
-    "AWS Cloud Club Captain y líder de ciberseguridad, Duoc UC": "AWS Cloud Club Captain and cybersecurity lead, Duoc UC",
+    "Práctica en Auditoría y Control Interno, LATAM Airlines": "Intern, Audit and Internal Control, LATAM Airlines",
     "Afinidad": "Affinity",
     "Mobile Suit Gundam. Por eso esta cabina.": "Mobile Suit Gundam. Hence this cockpit.",
     "Experiencia": "Experience",
     "Proyectos": "Projects",
     "Certificaciones": "Certifications",
     "Contacto": "Contact",
-    "Disponible para práctica profesional o pasantía": "Available for an internship",
+    "Abierto a la próxima oportunidad en ciberseguridad, IA y cloud": "Open to the next opportunity in cybersecurity, AI and cloud",
     "Modalidad híbrida o remota, desde Santiago de Chile": "Hybrid or remote, based in Santiago, Chile",
-    "Estudiante de Ingeniería en Informática. Administré EDR/XDR en un entorno de más de 24.000 endpoints y hoy lidero una comunidad de ciberseguridad y cloud de más de 100 personas.": "Computer Engineering student. I managed EDR/XDR across more than 24,000 endpoints and today I lead a cybersecurity and cloud community of over 100 people.",
+    "Estudiante de Ingeniería en Informática. Hoy hago mi práctica en Auditoría y Control Interno en LATAM Airlines, en paralelo con mi capstone PodoCare. Antes administré EDR/XDR sobre más de 24.000 endpoints en IBM y lideré una comunidad de ciberseguridad y cloud de más de 100 personas.": "Computer Engineering student. I'm currently interning in Audit and Internal Control at LATAM Airlines, alongside my PodoCare capstone. Before that I managed EDR/XDR across more than 24,000 endpoints at IBM and led a cybersecurity and cloud community of over 100 people.",
     "Descargar CV (PDF)": "Download résumé (PDF, Spanish)",
     "Hablemos": "Let's talk",
     "Detección": "Detection",
@@ -2031,7 +2090,7 @@ a.key { text-decoration: none; color: inherit; }
     "Linux y hardening": "Linux and hardening",
     "Telemetría de seguridad": "Security telemetry",
     "Lo que respalda el trabajo.": "What backs the work.",
-    "14 certificaciones": "14 certifications",
+    "12 certificaciones": "12 certifications",
     "Las insignias enlazadas se verifican en": "Linked badges can be verified on",
     "mi perfil de Credly": "my Credly profile",
     "Vista del demo público. Haz clic para abrirlo.": "Public demo view. Click to open it.",
@@ -2044,7 +2103,7 @@ a.key { text-decoration: none; color: inherit; }
     "Universidad de Playa Ancha": "Universidad de Playa Ancha",
     "Ingeniería Civil en Computación, mención Informática": "Computer Engineering (Civil Engineering track)",
     "UTEM, estudios no finalizados": "UTEM, not completed",
-    "Busco práctica profesional o pasantía.": "Looking for an internship.",
+    "Abierto a la próxima oportunidad.": "Open to the next opportunity.",
     "Ciberseguridad, seguridad para sistemas de IA o cloud security. Escríbeme y conversamos.": "Cybersecurity, security for AI systems or cloud security. Write to me and let's talk.",
     "Haz clic para copiar el correo": "Click to copy the email",
     "Escribir correo": "Send an email",
@@ -2052,14 +2111,14 @@ a.key { text-decoration: none; color: inherit; }
     "Ubicación": "Location",
     "Diseño y contenido propios": "Design and content by me",
     "Volver al cockpit": "Back to cockpit",
-    "Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Busco práctica profesional o pasantía.": "Marcelo Caballero Olave: cybersecurity, AI security and cloud security. Looking for an internship.",
+    "Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.": "Marcelo Caballero Olave: cybersecurity, AI security and cloud security. Open to the next opportunity.",
     "Secuencia de apertura de la cabina": "Cockpit opening sequence",
-    "Objetivo de misión: busco práctica profesional o pasantía en ciberseguridad, seguridad para IA o cloud, en modalidad híbrida o remota. Pulsa para abrir el canal de contacto.": "Mission objective: I'm looking for an internship in cybersecurity, AI security or cloud, hybrid or remote. Press to open the contact channel.",
-    "Objetivo de misión: práctica profesional o pasantía. Abrir contacto.": "Mission objective: internship. Open contact.",
-    "Último despliegue: IBM Chile, Endpoint Security Specialist L2. Administré XDR/EDR sobre 24.000 endpoints y 3.000 servidores. Pulsa para ver todas las misiones.": "Latest deployment: IBM Chile, Endpoint Security Specialist L2. I managed XDR/EDR across 24,000 endpoints and 3,000 servers. Press to see every mission.",
-    "Último despliegue en IBM Chile: 24.000 endpoints. Abrir misiones.": "Latest deployment at IBM Chile: 24,000 endpoints. Open missions.",
-    "Licencias de vuelo: 14 certificaciones de Microsoft, AWS, Cisco, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación.": "Flight licenses: 14 certifications from Microsoft, AWS, Cisco, Oracle, IBM and Google. Press for details and my education.",
-    "Licencias de vuelo: 14 certificaciones. Abrir licencias.": "Flight licenses: 14 certifications. Open licenses.",
+    "Objetivo de misión: abierto a la próxima oportunidad en ciberseguridad, seguridad para IA o cloud, en modalidad híbrida o remota. Hoy hago mi práctica en LATAM Airlines. Pulsa para abrir el canal de contacto.": "Mission objective: open to the next opportunity in cybersecurity, AI security or cloud, hybrid or remote. I'm currently interning at LATAM Airlines. Press to open the contact channel.",
+    "Objetivo de misión: próxima oportunidad. Abrir contacto.": "Mission objective: next opportunity. Open contact.",
+    "Despliegue destacado: IBM Chile, Endpoint Security Specialist L2. Administré XDR/EDR sobre 24.000 endpoints y 3.000 servidores. Pulsa para ver todas las misiones.": "Featured deployment: IBM Chile, Endpoint Security Specialist L2. I managed XDR/EDR across 24,000 endpoints and 3,000 servers. Press to see every mission.",
+    "Despliegue destacado en IBM Chile: 24.000 endpoints. Abrir misiones.": "Featured deployment at IBM Chile: 24,000 endpoints. Open missions.",
+    "Licencias de vuelo: 12 certificaciones de Microsoft, AWS, Cisco, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación.": "Flight licenses: 12 certifications from Microsoft, AWS, Cisco, Oracle, IBM and Google. Press for details and my education.",
+    "Licencias de vuelo: 12 certificaciones. Abrir licencias.": "Flight licenses: 12 certifications. Open licenses.",
     "Armamento principal: las herramientas de seguridad que he operado. CrowdStrike Falcon y Trend Micro Vision One en IBM, más automatización con Python y Bash.": "Main armament: the security tools I have operated. CrowdStrike Falcon and Trend Micro Vision One at IBM, plus automation with Python and Bash.",
     "Armamento principal de seguridad. Abrir arsenal.": "Main security armament. Open arsenal.",
     "Sistemas de soporte: cloud e infraestructura. Capitán del AWS Cloud Club, certificado en Azure, y Supabase con RLS y Docker en el proyecto PodoCare.": "Support systems: cloud and infrastructure. AWS Cloud Club Captain, Azure certified, and Supabase with RLS and Docker in the PodoCare project.",
@@ -2071,7 +2130,7 @@ a.key { text-decoration: none; color: inherit; }
     "Hangar: proyectos que he construido. Hoy, PodoCare, mi proyecto de título.": "Hangar: projects I have built. Today, PodoCare, my capstone project.",
     "Medallas: primer lugar en el CTF Intercede, el ejercicio de ciberdefensa Llaitún 2024 y otros reconocimientos.": "Medals: first place in the Intercede CTF, the Llaitún 2024 cyber defense exercise and other awards.",
     "Arsenal: todas mis habilidades técnicas en seguridad, cloud, sistemas y datos.": "Arsenal: all my technical skills in security, cloud, systems and data.",
-    "Licencias: mis 14 certificaciones y mi formación académica.": "Licenses: my 14 certifications and my education.",
+    "Licencias: mis 12 certificaciones y mi formación académica.": "Licenses: my 12 certifications and my education.",
     "Comms: correo, LinkedIn, GitHub, Credly y mi CV en PDF.": "Comms: email, LinkedIn, GitHub, Credly and my résumé in PDF.",
     "GitHub: abre mis repositorios en una pestaña nueva.": "GitHub: opens my repositories in a new tab.",
     "Foto de Marcelo Caballero": "Photo of Marcelo Caballero",
@@ -2081,7 +2140,7 @@ a.key { text-decoration: none; color: inherit; }
     "Piloto Marcelo Caballero a bordo. Todos los sistemas en verde.": "Pilot Marcelo Caballero on board. All systems green.",
     "Toca un panel o una consola para abrir cada sistema.": "Tap a panel or a console to open each system.",
     "Pasa el mouse sobre un panel o una consola y te explico qué contiene.": "Hover over a panel or a console and I'll tell you what it holds.",
-    "Objetivo: práctica profesional o pasantía en ciberseguridad, IA y cloud.": "Objective: an internship in cybersecurity, AI and cloud.",
+    "Objetivo: la próxima oportunidad en ciberseguridad, IA y cloud.": "Objective: the next opportunity in cybersecurity, AI and cloud.",
     "Radar: cada punto es un endpoint. Rosa, amenaza detectada; verde, contenida.": "Radar: each dot is an endpoint. Pink, detected threat; green, contained.",
     "Desliza de lado sobre el espacio para mirar en 360°.": "Swipe sideways over space to look around in 360°.",
     "Teclas 1 a 8 para abrir cada sistema. Mueve el mouse para mirar en 360°.": "Keys 1 to 8 open each system. Move the mouse to look around in 360°.",
@@ -2990,7 +3049,7 @@ a.key { text-decoration: none; color: inherit; }
   var lines = [
     'Piloto Marcelo Caballero a bordo. Todos los sistemas en verde.',
     touch ? 'Toca un panel o una consola para abrir cada sistema.' : 'Pasa el mouse sobre un panel o una consola y te explico qué contiene.',
-    'Objetivo: práctica profesional o pasantía en ciberseguridad, IA y cloud.',
+    'Objetivo: la próxima oportunidad en ciberseguridad, IA y cloud.',
     'Radar: cada punto es un endpoint. Rosa, amenaza detectada; verde, contenida.',
     touch ? 'Desliza de lado sobre el espacio para mirar en 360°.' : 'Teclas 1 a 8 para abrir cada sistema. Mueve el mouse para mirar en 360°.',
     '¿Prefieres el CV sin cabina? Pulsa Modo profesional o la tecla P.'
