@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-iKR1t6j3U42TggngYMBVenFx8XxwKCL7YaWoQeGWnMM='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-lo+zFnkct3QBMegy1fOIikqXbUSbT1bXwr/zvatuUIM='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
 <meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -248,6 +248,13 @@ a.tag:hover, a.tag:focus-visible { border-color: var(--teal); color: #fff; }
 .arch-more[open] .arch { margin-top: 16px; }
 @media (max-width: 1100px) { .project-grid { grid-template-columns: minmax(0, 260px) minmax(0, 1fr); } .project-grid .project-body > div:last-child { grid-column: 1 / -1; } }
 @media (max-width: 860px) { .project-grid { grid-template-columns: 1fr; } .project-grid .project-shot { max-width: 420px; } }
+.path-block { margin-top: 40px; }
+.path { list-style: none; margin: 24px 0 0; padding: 0; counter-reset: step; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 36px; }
+.path li { position: relative; padding: 2px 0 2px 42px; counter-increment: step; }
+.path li::before { content: counter(step); position: absolute; left: 0; top: 2px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--teal); color: var(--teal); font-size: 12px; line-height: 24px; text-align: center; }
+.path h4 { margin: 0 0 4px; font-size: 17px; font-weight: 500; line-height: 1.3; }
+.path p { margin: 0; font-size: var(--fs-small); color: var(--fog); line-height: 1.5; }
+@media (max-width: 760px) { .path { grid-template-columns: 1fr; } }
 .posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 36px; }
 .post { display: flex; flex-direction: column; border: 1px solid var(--line-soft); border-radius: 10px; overflow: hidden; background: var(--panel); }
 .post img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 25%; }
@@ -1561,7 +1568,7 @@ a.key { text-decoration: none; color: inherit; }
       <button class="key" type="button" data-open="piloto" data-say="Piloto: mi foto, quién soy, mi formación, mi CV en PDF y por qué esta cabina."><b>Piloto</b><small>[1] Ficha</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 14a7 7 0 0 1 14 0v3H5zM5 14h14M9 17v3h6v-3"/></svg><i class="led" aria-hidden="true"></i></button>
       <button class="key" type="button" data-open="misiones" data-say="Misiones: mi experiencia en LATAM Airlines, IBM Chile, Duoc UC y EVINK, con lo que hice en cada una."><b>Misiones</b><small>[2] Experiencia</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg><i class="led" aria-hidden="true"></i></button>
       <button class="key" type="button" data-open="hangar" data-say="Hangar: proyectos que he construido. PodoCare, mi proyecto de título, y otros tres de IA en AWS, accesibilidad y backend con Spring Boot."><b>Hangar</b><small>[3] Proyectos</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20V10l9-5 9 5v10M7 20v-6h10v6M3 20h18"/></svg><i class="led" aria-hidden="true"></i></button>
-      <button class="key" type="button" data-open="condecoraciones" data-say="Medallas: primer lugar en el CTF Intercede, Llaitún 2024 y 2025, y mi trabajo en comunidad: el AWS Cloud Club nivel Gold, charlas y eventos."><b>Medallas</b><small>[4] Logros</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l4 6 4-6"/><circle cx="12" cy="15" r="5"/><path d="M12 13v4M10 15h4"/></svg><i class="led" aria-hidden="true"></i></button>
+      <button class="key" type="button" data-open="condecoraciones" data-say="Medallas: primer lugar en el CTF Intercede, Llaitún 2024 y 2025, y mi camino de voluntariado: robótica, MLSA, ciberseguridad, Cibervoluntario y el AWS Cloud Club nivel Gold."><b>Medallas</b><small>[4] Logros</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l4 6 4-6"/><circle cx="12" cy="15" r="5"/><path d="M12 13v4M10 15h4"/></svg><i class="led" aria-hidden="true"></i></button>
     </div>
     <div class="console r" style="--d:.4s">
       <button class="key" type="button" data-open="arsenal" data-say="Arsenal: seguridad, cloud, desarrollo y las herramientas de IA que uso: Gemini, OpenAI, Anthropic, OpenCode y Grok."><b>Arsenal</b><small>[5] Habilidades</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-5M13 5l6 6-7 7-6-6zM15 3l6 6"/></svg><i class="led" aria-hidden="true"></i></button>
@@ -1751,16 +1758,18 @@ a.key { text-decoration: none; color: inherit; }
     </article>
 
     <article class="job">
-      <p class="when"><strong>May 2025 – May 2026</strong>La Florida, Santiago<br>Ad honorem</p>
+      <p class="when"><strong>May 2025 – May 2026</strong>La Florida, Santiago<br>Voluntariado</p>
       <div>
         <h3>AWS Cloud Club Captain y Líder de Ciberseguridad</h3>
         <p class="org">Duoc UC</p>
+        <p class="mute" style="margin:0 0 10px">Voluntariado, no un empleo. Mi camino completo está en <a href="#comunidad">Comunidad</a>.</p>
         <ul>
           <li>Programa formativo en cloud security (AWS IAM, EC2, S3, RDS) y ciberseguridad aplicada, con Zero Trust y gestión de accesos.</li>
           <li>Workshops de incident response, vulnerability management, threat intelligence y gestión de riesgos tecnológicos.</li>
           <li>Capacitación en protección de datos y ciberseguridad para instituciones públicas, incluida Carabineros de Chile.</li>
           <li>Clases de fundamentos para la certificación AWS Cloud Practitioner y una introducción a Amazon Bedrock.</li>
-          <li>Primer Cloud Captain de la sede: el club pasó de 0 a más de 100 personas activas y fue el primero de la sede en alcanzar el nivel Gold.</li>
+          <li>Speaker en otras instituciones para motivar a estudiantes a crear su propio Cloud Club, y charla de seguridad en la nube en AWS.</li>
+          <li>Tercer Cloud Captain del país y primero de la sede: el club pasó de 0 a más de 100 personas activas y fue el primero de la sede en alcanzar el nivel Gold.</li>
         </ul>
         <div class="tags"><span class="tag">AWS</span><span class="tag">Zero Trust</span><span class="tag">Incident response</span><span class="tag">Amazon Bedrock</span><span class="tag">Formación</span></div>
       </div>
@@ -1929,6 +1938,19 @@ a.key { text-decoration: none; color: inherit; }
 <section id="comunidad" class="sec shell">
   <h2 class="h2">Comunidad y charlas.</h2>
   <p class="lead mute" style="margin-top:24px">Organizar, enseñar y liderar comunidades cloud y de seguridad.</p>
+  <div class="path-block">
+    <h3 class="h3s">Mi camino en la comunidad</h3>
+    <p class="mute" style="margin-top:8px">Todo esto ha sido voluntariado, no un empleo: de la robótica a liderar comunidades de ciberseguridad y cloud.</p>
+    <ol class="path">
+      <li><h4>Track de robótica, CITT Duoc UC</h4><p>Miembro fundador en Plaza Vespucio. Competimos con robots LEGO y construimos y configuramos el robot de combate Kondo.</p></li>
+      <li><h4>Microsoft Learn Student Ambassador</h4><p>El primero de Chile. Cerca de un año en el equipo, con presentaciones de Azure para preparar el AZ-900 y los primeros conceptos de IA en los servicios de Azure.</p></li>
+      <li><h4>Track de ciberseguridad, CITT</h4><p>Lo creé cuando la ciberseguridad empezó a llamarme la atención. Participamos sobre todo en CTF.</p></li>
+      <li><h4>Cibervoluntario, Duoc UC</h4><p>Campaña para hacer crecer la disciplina en el país, con cursos de concientización para niños y adultos mayores.</p></li>
+      <li><h4>AWS Cloud Captain</h4><p>El tercero del país. Fui speaker para motivar a estudiantes de otras instituciones a crear su Cloud Club, con clases para Cloud Practitioner y una charla de seguridad en la nube.</p></li>
+      <li><h4>AWS Leadership Summit y Nerdearla</h4><p>Invitado por ser Captain al Leadership Summit Cono Sur y a Nerdearla Chile 2026, donde vi la transición de los Cloud Clubs a los Student Builder Groups (SBG).</p></li>
+      <li><h4>Speaker y apoyo en la sede</h4><p>Charlas de primeros pasos en las carreras para estudiantes de 4° medio de distintos colegios, y alumno ayudante en apoyo administrativo, eventos e inscripción de personas.</p></li>
+    </ol>
+  </div>
   <div class="posts">
     <article class="post"><img src="img/aws-community-day.webp" loading="lazy" alt="Pancarta del AWS Community Day Chile, 3.ª edición"><div><p class="post-date">30 may 2026</p><h3>AWS Community Day Chile 2026</h3><p>Parte del equipo organizador del evento en Duoc UC, sede San Joaquín: más de 500 asistentes en torno a cloud e inteligencia artificial.</p></div></article>
     <article class="post"><img src="img/cloud-club-gold.webp" loading="lazy" alt="Integrantes del AWS Cloud Club de Duoc UC Plaza Vespucio con la insignia Gold"><div><p class="post-date">13 may 2026</p><h3>Un año como Cloud Captain</h3><p>De 0 a más de 100 personas activas en el ecosistema AWS, y el primer club de la sede en alcanzar el nivel Gold. Estudiantes del club se certificaron como Cloud Practitioner.</p></div></article>
@@ -2089,6 +2111,27 @@ a.key { text-decoration: none; color: inherit; }
   var fmt = function (n) { return Math.round(n).toLocaleString(LANG === 'en' ? 'en-US' : 'es-CL'); };
   /* --- Idioma: español por defecto; inglés con el botón EN o ?lang=en (se recuerda) --- */
   var I18N = {
+    "Voluntariado": "Volunteer role",
+    "Voluntariado, no un empleo. Mi camino completo está en": "A volunteer role, not a job. My full path is in",
+    "Tercer Cloud Captain del país y primero de la sede: el club pasó de 0 a más de 100 personas activas y fue el primero de la sede en alcanzar el nivel Gold.": "Third Cloud Captain in the country and first at the campus: the club grew from 0 to over 100 active people and was the first on campus to reach Gold level.",
+    "Speaker en otras instituciones para motivar a estudiantes a crear su propio Cloud Club, y charla de seguridad en la nube en AWS.": "Speaker at other institutions to motivate students to start their own Cloud Club, and a talk on cloud security on AWS.",
+    "Track de robótica, CITT Duoc UC": "Robotics track, Duoc UC CITT",
+    "Miembro fundador en Plaza Vespucio. Competimos con robots LEGO y construimos y configuramos el robot de combate Kondo.": "Founding member at Plaza Vespucio. We competed with LEGO robots and built and configured the Kondo combat robot.",
+    "Microsoft Learn Student Ambassador": "Microsoft Learn Student Ambassador",
+    "El primero de Chile. Cerca de un año en el equipo, con presentaciones de Azure para preparar el AZ-900 y los primeros conceptos de IA en los servicios de Azure.": "The first in Chile. Nearly a year on the team, giving Azure talks to prepare for the AZ-900 and early AI concepts on Azure services.",
+    "Track de ciberseguridad, CITT": "Cybersecurity track, CITT",
+    "Lo creé cuando la ciberseguridad empezó a llamarme la atención. Participamos sobre todo en CTF.": "I created it when cybersecurity caught my attention. We took part mostly in CTFs.",
+    "Cibervoluntario, Duoc UC": "Cyber volunteer, Duoc UC",
+    "Campaña para hacer crecer la disciplina en el país, con cursos de concientización para niños y adultos mayores.": "A campaign to grow the discipline in the country, with awareness courses for children and older adults.",
+    "AWS Cloud Captain": "AWS Cloud Captain",
+    "El tercero del país. Fui speaker para motivar a estudiantes de otras instituciones a crear su Cloud Club, con clases para Cloud Practitioner y una charla de seguridad en la nube.": "The third in the country. I spoke to motivate students from other institutions to start their own Cloud Club, with Cloud Practitioner classes and a cloud security talk.",
+    "AWS Leadership Summit y Nerdearla": "AWS Leadership Summit and Nerdearla",
+    "Invitado por ser Captain al Leadership Summit Cono Sur y a Nerdearla Chile 2026, donde vi la transición de los Cloud Clubs a los Student Builder Groups (SBG).": "Invited as a Captain to the Leadership Summit Cono Sur and Nerdearla Chile 2026, where I saw the transition from Cloud Clubs to Student Builder Groups (SBG).",
+    "Speaker y apoyo en la sede": "Speaker and campus support",
+    "Charlas de primeros pasos en las carreras para estudiantes de 4° medio de distintos colegios, y alumno ayudante en apoyo administrativo, eventos e inscripción de personas.": "Talks on first steps in professional careers for 11th-grade students from several schools, and student assistant for administrative support, events and registrations.",
+    "Mi camino en la comunidad": "My path in the community",
+    "Todo esto ha sido voluntariado, no un empleo: de la robótica a liderar comunidades de ciberseguridad y cloud.": "All of this has been volunteering, not a job: from robotics to leading cybersecurity and cloud communities.",
+    "Medallas: primer lugar en el CTF Intercede, Llaitún 2024 y 2025, y mi camino de voluntariado: robótica, MLSA, ciberseguridad, Cibervoluntario y el AWS Cloud Club nivel Gold.": "Medals: first place at the Intercede CTF, Llaitún 2024 and 2025, and my volunteer path: robotics, MLSA, cybersecurity, Cyber Volunteer and the Gold-level AWS Cloud Club.",
     "Equipo ShadowByte frente a profesionales de varias empresas. SCADA, explotación web, criptografía y escalada de privilegios.": "Team ShadowByte against professionals from several companies. SCADA, web exploitation, cryptography and privilege escalation.",
     "Duoc UC, nivel Gold ·": "Duoc UC, Gold level ·",
     "Medallas y comunidad": "Medals and community",
@@ -3688,6 +3731,7 @@ a.key { text-decoration: none; color: inherit; }
     condecoraciones: ['Sistema 4 · Logros', 'Medallas y comunidad', function () {
       var f = document.createDocumentFragment();
       f.appendChild(grab('#logros .split > div:first-child'));
+      f.appendChild(grab('#comunidad .path-block'));
       var h = document.createElement('h3'); h.className = 'h3s'; h.textContent = T('Comunidad y charlas'); h.style.marginTop = '36px';
       f.appendChild(h); f.appendChild(grab('#comunidad .posts'));
       var more = grab('#comunidad .posts-more'); more.open = false; f.appendChild(more);
