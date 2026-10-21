@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-IY4IjzLyDp8swaSAk3rO4Oars4XqLChSAgjvbqU9ccg='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-JLtLEJ+cyQbnxZI8yRWNaf+x4hrCwhik5bnwtZBTRp0='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
 <meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -257,6 +257,10 @@ a.tag:hover, a.tag:focus-visible { border-color: var(--teal); color: #fff; }
 .post p:last-child { font-size: var(--fs-small); color: var(--fog); line-height: 1.5; }
 @media (max-width: 980px) { .posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .posts { grid-template-columns: 1fr; } }
+.posts-more { margin-top: 28px; }
+.posts-more summary { cursor: pointer; color: var(--teal); font-size: var(--fs-small); }
+.posts-more .posts { margin-top: 20px; }
+.post.noimg { border-left: 2px solid var(--teal); }
 .arch figcaption { margin-top: 10px; text-align: center; font-size: var(--fs-small); color: var(--fog); }
 
 /* ---------- Logros y habilidades ---------- */
@@ -1850,6 +1854,20 @@ a.key { text-decoration: none; color: inherit; }
     <article class="post"><img src="img/discurso-duoc.webp" loading="lazy" alt="Discurso de despedida en la ceremonia de titulación de Duoc UC Plaza Vespucio"><div><p class="post-date">Dic 2025</p><h3>Título y discurso de despedida</h3><p>Titulación como Analista Programador en Duoc UC Plaza Vespucio y discurso de despedida de mi generación.</p></div></article>
     <article class="post"><img src="img/charla-aws-pokemon.webp" loading="lazy" alt="Asistentes a la charla del AWS Cloud Club de Duoc UC Plaza Vespucio"><div><p class="post-date">Nov 2025</p><h3>Mi primera charla de AWS</h3><p>Charla técnica de AWS con temática Pokémon junto a la comunidad del Cloud Club, con asistentes pese a la lluvia.</p></div></article>
   </div>
+  <details class="posts-more"><summary>Ver más actividad (2024 – 2025)</summary>
+  <div class="posts">
+    <article class="post"><img src="img/cloud-club-bienvenida.webp" loading="lazy" alt="Afiche de bienvenida al AWS Cloud Club de Duoc UC Plaza Vespucio"><div><p class="post-date">29 ago 2025</p><h3>Primer evento del AWS Cloud Club</h3><p>Presentación del propósito del club, los temas del año y las próximas actividades, con una de las primeras Cloud Captains de Latinoamérica como invitada.</p></div></article>
+    <article class="post noimg"><div><p class="post-date">23 jul 2025</p><h3>CTF Llaitún 2025: OT Warrior</h3><p>Puesto 18 con el equipo ShadowByte frente a profesionales de varias empresas. Desafíos de seguridad SCADA, explotación web, criptografía y escalada de privilegios.</p></div></article>
+    <article class="post"><img src="img/cibervoluntarios.webp" loading="lazy" alt="Asistentes al lanzamiento de CiberVoluntarios frente a la pantalla del programa"><div><p class="post-date">8 may 2025</p><h3>Lanzamiento de CiberVoluntarios</h3><p>Inicio del programa de Duoc UC para concienciar sobre los riesgos en la red, dirigido a nativos digitales y adultos mayores, con apoyo de Carabineros y otros aliados.</p></div></article>
+    <article class="post"><img src="img/aws-girls.webp" loading="lazy" alt="Letras de AWS y AWS Girls en las oficinas de AWS Chile"><div><p class="post-date">21 feb 2025</p><h3>Meetup de AWS Girls CL</h3><p>Creación de agentes de IA con Amazon Bedrock: prompts, Knowledge Bases en S3 y despliegue con Lambda, en las oficinas de AWS Chile.</p></div></article>
+    <article class="post"><img src="img/ibm-practica.webp" loading="lazy" alt="Con una mochila de IBM al iniciar la práctica profesional"><div><p class="post-date">13 ene 2025</p><h3>Inicio de la práctica en IBM</h3><p>Comienza la práctica profesional en IBM Chile, camino a convertirme en Analista Programador.</p></div></article>
+    <article class="post"><img src="img/ciberlab.webp" loading="lazy" alt="Frente al letrero del Ciberlab del Centro de Innovación UC"><div><p class="post-date">26 nov 2024</p><h3>Taller de Siemens en el Ciberlab UC</h3><p>PLC, HMI y control de motores con variadores de frecuencia: un acercamiento a redes industriales y ciberseguridad.</p></div></article>
+    <article class="post noimg"><div><p class="post-date">25 nov 2024</p><h3>Summit de infraestructura crítica</h3><p>Summit del Centro de Innovación UC sobre protección de infraestructura crítica, y 9.º lugar del equipo en el CTF.</p></div></article>
+    <article class="post"><img src="img/volcan-2024.webp" loading="lazy" alt="Estudiantes de Duoc UC en el Museo Interactivo Mirador"><div><p class="post-date">13 nov 2024</p><h3>Volcán 2024, cultura digital</h3><p>Exposición en el Museo Interactivo Mirador y charla sobre la importancia de preservar el arte digital.</p></div></article>
+    <article class="post"><img src="img/botathon.webp" loading="lazy" alt="Equipo del Botathon en el escenario con los premios"><div><p class="post-date">8-9 nov 2024</p><h3>Botathon, segundo lugar</h3><p>En 20 horas, un MVP de chatbot para consultas y manejo de pacientes con Automation Anywhere y OpenAI Whisper, junto a Duoc UC y Teletón.</p></div></article>
+    <article class="post"><img src="img/seminario-ciberseguridad.webp" loading="lazy" alt="En el auditorio del seminario de ciberseguridad"><div><p class="post-date">9 oct 2024</p><h3>VII Seminario Internacional de Ciberseguridad</h3><p>Segunda jornada sobre hacking ético con IA y vulnerabilidades de los sistemas de IA, incluida la evasión de EDR/XDR.</p></div></article>
+  </div>
+  </details>
 </section>
 
 <!-- CERTIFICACIONES + EDUCACION -->
@@ -1986,6 +2004,45 @@ a.key { text-decoration: none; color: inherit; }
   var fmt = function (n) { return Math.round(n).toLocaleString(LANG === 'en' ? 'en-US' : 'es-CL'); };
   /* --- Idioma: español por defecto; inglés con el botón EN o ?lang=en (se recuerda) --- */
   var I18N = {
+    "29 ago 2025": "Aug 29, 2025",
+    "Primer evento del AWS Cloud Club": "First AWS Cloud Club event",
+    "Presentación del propósito del club, los temas del año y las próximas actividades, con una de las primeras Cloud Captains de Latinoamérica como invitada.": "Presentation of the club's purpose, the year's topics and upcoming activities, with one of the first Cloud Captains in Latin America as a guest.",
+    "Afiche de bienvenida al AWS Cloud Club de Duoc UC Plaza Vespucio": "Welcome poster for the Duoc UC Plaza Vespucio AWS Cloud Club",
+    "23 jul 2025": "Jul 23, 2025",
+    "CTF Llaitún 2025: OT Warrior": "Llaitún 2025 CTF: OT Warrior",
+    "Puesto 18 con el equipo ShadowByte frente a profesionales de varias empresas. Desafíos de seguridad SCADA, explotación web, criptografía y escalada de privilegios.": "18th place with team ShadowByte against professionals from several companies. Challenges in SCADA security, web exploitation, cryptography and privilege escalation.",
+    "8 may 2025": "May 8, 2025",
+    "Lanzamiento de CiberVoluntarios": "CiberVoluntarios launch",
+    "Inicio del programa de Duoc UC para concienciar sobre los riesgos en la red, dirigido a nativos digitales y adultos mayores, con apoyo de Carabineros y otros aliados.": "Start of the Duoc UC program to raise awareness of online risks, aimed at digital natives and older adults, backed by Carabineros and other partners.",
+    "Asistentes al lanzamiento de CiberVoluntarios frente a la pantalla del programa": "Attendees at the CiberVoluntarios launch in front of the program screen",
+    "21 feb 2025": "Feb 21, 2025",
+    "Meetup de AWS Girls CL": "AWS Girls CL meetup",
+    "Creación de agentes de IA con Amazon Bedrock: prompts, Knowledge Bases en S3 y despliegue con Lambda, en las oficinas de AWS Chile.": "Building AI agents with Amazon Bedrock: prompts, S3 Knowledge Bases and Lambda deployment, at the AWS Chile offices.",
+    "Letras de AWS y AWS Girls en las oficinas de AWS Chile": "AWS and AWS Girls lettering at the AWS Chile offices",
+    "13 ene 2025": "Jan 13, 2025",
+    "Inicio de la práctica en IBM": "Starting my internship at IBM",
+    "Comienza la práctica profesional en IBM Chile, camino a convertirme en Analista Programador.": "Start of my professional internship at IBM Chile, on the way to becoming a Programmer Analyst.",
+    "Con una mochila de IBM al iniciar la práctica profesional": "With an IBM backpack at the start of the internship",
+    "26 nov 2024": "Nov 26, 2024",
+    "Taller de Siemens en el Ciberlab UC": "Siemens workshop at the UC Ciberlab",
+    "PLC, HMI y control de motores con variadores de frecuencia: un acercamiento a redes industriales y ciberseguridad.": "PLCs, HMIs and motor control with frequency drives: a hands-on look at industrial networks and cybersecurity.",
+    "Frente al letrero del Ciberlab del Centro de Innovación UC": "In front of the Ciberlab sign at the UC Innovation Center",
+    "25 nov 2024": "Nov 25, 2024",
+    "Summit de infraestructura crítica": "Critical infrastructure summit",
+    "Summit del Centro de Innovación UC sobre protección de infraestructura crítica, y 9.º lugar del equipo en el CTF.": "UC Innovation Center summit on critical infrastructure protection, and 9th place for the team in the CTF.",
+    "13 nov 2024": "Nov 13, 2024",
+    "Volcán 2024, cultura digital": "Volcán 2024, digital culture",
+    "Exposición en el Museo Interactivo Mirador y charla sobre la importancia de preservar el arte digital.": "Exhibition at the Museo Interactivo Mirador and a talk on the importance of preserving digital art.",
+    "Estudiantes de Duoc UC en el Museo Interactivo Mirador": "Duoc UC students at the Museo Interactivo Mirador",
+    "8-9 nov 2024": "Nov 8-9, 2024",
+    "Botathon, segundo lugar": "Botathon, second place",
+    "En 20 horas, un MVP de chatbot para consultas y manejo de pacientes con Automation Anywhere y OpenAI Whisper, junto a Duoc UC y Teletón.": "In 20 hours, a chatbot MVP for patient inquiries and handling with Automation Anywhere and OpenAI Whisper, with Duoc UC and Teletón.",
+    "Equipo del Botathon en el escenario con los premios": "Botathon team on stage with the prizes",
+    "9 oct 2024": "Oct 9, 2024",
+    "VII Seminario Internacional de Ciberseguridad": "7th International Cybersecurity Seminar",
+    "Segunda jornada sobre hacking ético con IA y vulnerabilidades de los sistemas de IA, incluida la evasión de EDR/XDR.": "Second day on ethical hacking with AI and vulnerabilities in AI systems, including EDR/XDR evasion.",
+    "En el auditorio del seminario de ciberseguridad": "In the cybersecurity seminar auditorium",
+    "Ver más actividad (2024 – 2025)": "See more activity (2024 – 2025)",
     "Comunidad": "Community",
     "Comunidad y charlas.": "Community and talks.",
     "Organizar, enseñar y liderar comunidades cloud y de seguridad.": "Organizing, teaching and leading cloud and security communities.",
