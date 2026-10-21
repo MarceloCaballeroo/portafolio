@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-5i2PfOYbQdSUhIVS9WSnGVJzict/lXevUMFzQn3QC+8='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-trCZgiQzyNSNBJ1Sh7COlPax6dFufCjIPHlFYzYzU8o='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
 <meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -224,11 +224,30 @@ a.tag:hover, a.tag:focus-visible { border-color: var(--teal); color: #fff; }
 .layers b { display: block; font-weight: 500; }
 .layers span { display: block; color: var(--fog); font-size: var(--fs-small); margin-top: 2px; }
 .project .note { margin-top: 20px; font-size: var(--fs-small); color: var(--fog); }
-.project > .tags { margin-top: 32px; }
+.project > .tags { margin-top: 20px; }
 .arch { width: min(100%, 820px); margin: 36px auto 0; }
 .arch a { display: block; border: 1px solid var(--line-soft); border-radius: 8px; overflow: hidden; transition: border-color .3s; }
 .arch a:hover { border-color: var(--teal); }
 .arch img { display: block; width: 100%; height: auto; }
+.project-grid { display: grid; grid-template-columns: minmax(0, 290px) minmax(0, 1fr) minmax(0, 1fr); gap: 24px 36px; margin-top: 26px; align-items: start; }
+.project-grid .project-shot { width: 100%; margin: 0; }
+.project-grid .shot-cap { margin-top: 8px; text-align: left; }
+.project-grid .project-body { display: contents; }
+.project-grid .project-body p, .project-grid .bullets li, .project-grid .layers b { font-size: 14.5px; line-height: 1.5; }
+.project-grid .layers span { font-size: 13px; }
+.project-grid .h3s { margin-bottom: 10px; }
+.project-grid .bullets li { margin-top: 4px; }
+.project-grid .layers li { padding-bottom: 10px; }
+.project-grid .layers li::after { top: 26px; }
+.project .project-title { font-size: clamp(32px, 4vw, 52px); margin: 8px 0 12px; }
+.project .lead { font-size: var(--fs-small); }
+.project { padding: clamp(18px, 3vw, 32px); }
+.projects { margin-top: 40px; }
+.arch-more { margin-top: 20px; border-top: 1px solid var(--line-soft); padding-top: 14px; }
+.arch-more summary { cursor: pointer; color: var(--teal); font-size: var(--fs-small); }
+.arch-more[open] .arch { margin-top: 16px; }
+@media (max-width: 1100px) { .project-grid { grid-template-columns: minmax(0, 260px) minmax(0, 1fr); } .project-grid .project-body > div:last-child { grid-column: 1 / -1; } }
+@media (max-width: 860px) { .project-grid { grid-template-columns: 1fr; } .project-grid .project-shot { max-width: 420px; } }
 .arch figcaption { margin-top: 10px; text-align: center; font-size: var(--fs-small); color: var(--fog); }
 
 /* ---------- Logros y habilidades ---------- */
@@ -1264,7 +1283,7 @@ a.key { text-decoration: none; color: inherit; }
 
     <div class="pod p-gr" style="--d:.8s">
       <div class="frame"></div>
-      <button class="panel" type="button" data-open="licencias" data-say="Licencias de vuelo: 12 certificaciones de Microsoft, AWS, Cisco, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación." aria-label="Licencias de vuelo: 12 certificaciones. Abrir licencias.">
+      <button class="panel" type="button" data-open="licencias" data-say="Licencias de vuelo: 22 certificaciones de Microsoft, AWS, Cisco, USACH, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación." aria-label="Licencias de vuelo: 22 certificaciones. Abrir licencias.">
         <span class="in">
           <span class="hd"><i></i> Licencias de vuelo</span>
           <span class="sub-h" style="text-align:right">Certificaciones por emisor</span>
@@ -1511,7 +1530,7 @@ a.key { text-decoration: none; color: inherit; }
     </div>
     <div class="console r" style="--d:.4s">
       <button class="key" type="button" data-open="arsenal" data-say="Arsenal: todas mis habilidades técnicas en seguridad, cloud, sistemas y datos."><b>Arsenal</b><small>[5] Habilidades</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-5M13 5l6 6-7 7-6-6zM15 3l6 6"/></svg><i class="led" aria-hidden="true"></i></button>
-      <button class="key" type="button" data-open="licencias" data-say="Licencias: mis 12 certificaciones y mi formación académica."><b>Licencias</b><small>[6] Certificados</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="8.5" cy="12" r="2"/><path d="M13 10h5M13 14h4"/></svg><i class="led" aria-hidden="true"></i></button>
+      <button class="key" type="button" data-open="licencias" data-say="Licencias: mis 22 certificaciones y mi formación académica."><b>Licencias</b><small>[6] Certificados</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="8.5" cy="12" r="2"/><path d="M13 10h5M13 14h4"/></svg><i class="led" aria-hidden="true"></i></button>
       <button class="key" type="button" data-open="comms" data-say="Comms: correo, LinkedIn, GitHub, Credly y mi CV en PDF."><b>Comms</b><small>[7] Contacto</small><svg class="kico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11v10M8 21h8M8.5 8.5a5 5 0 0 1 7 0M5.5 5.5a9 9 0 0 1 13 0"/><circle cx="12" cy="11" r="1.2"/></svg><i class="led" aria-hidden="true"></i></button>
       <a class="key key-gh" href="https://github.com/MarceloCaballeroo" target="_blank" rel="noopener noreferrer" data-say="GitHub: abre mis repositorios en una pestaña nueva."><b>GitHub</b><small>[8] Repos</small><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg><i class="led" aria-hidden="true"></i></a>
     </div>
@@ -1601,7 +1620,7 @@ a.key { text-decoration: none; color: inherit; }
     <div class="stat"><b data-to="24000" data-suffix="+">24.000+</b><span>Endpoints bajo gestión XDR/EDR</span></div>
     <div class="stat"><b data-to="3000">3.000</b><span>Servidores en el mismo entorno</span></div>
     <div class="stat"><b data-to="100" data-suffix="+">100+</b><span>Personas en la comunidad estudiantil</span></div>
-    <div class="stat"><b data-to="12">12</b><span>Certificaciones en seguridad, cloud y datos</span></div>
+    <div class="stat"><b data-to="22">22</b><span>Certificaciones en seguridad, cloud y datos</span></div>
   </div>
 </section>
 
@@ -1730,11 +1749,14 @@ a.key { text-decoration: none; color: inherit; }
           <a class="btn" href="https://podocare-six.vercel.app" target="_blank" rel="noopener noreferrer">Abrir demo</a>
         </div>
       </div>
+      <div class="project-grid">
+        <div class="project-media">
       <a class="project-shot" href="https://podocare-six.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Abrir el demo de PodoCare">
         <span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><em>podocare-six.vercel.app</em></span>
         <img src="img/podocare.webp" width="788" height="470" loading="lazy" alt="Página de inicio de PodoCare: clasificación de riesgo de pie diabético según IWGDF">
       </a>
-      <p class="shot-cap">Vista del demo público. Haz clic para abrirlo.</p>
+      <p class="shot-cap">Vista del demo público</p>
+        </div>
       <div class="project-body">
         <div>
           <h4 class="h3s">Mi rol</h4>
@@ -1758,10 +1780,13 @@ a.key { text-decoration: none; color: inherit; }
           <p class="note">Incluye ficha clínica con mapa 3D del pie, agenda que impide la doble reserva y CI en GitHub Actions.</p>
         </div>
       </div>
+      </div>
+      <details class="arch-more"><summary>Ver arquitectura</summary>
       <figure class="arch">
         <a href="img/podocare-arquitectura.svg" target="_blank" rel="noopener noreferrer"><img src="img/podocare-arquitectura.svg" width="1112" height="865" loading="lazy" alt="Diagrama de arquitectura de PodoCare: navegador, Next.js con proxy de sesión y Server Actions, y Supabase con PostgreSQL con RLS, Auth con TOTP y bitácora inmutable"></a>
         <figcaption>Arquitectura por capas, del README del repositorio. Haz clic para ampliarla.</figcaption>
       </figure>
+      </details>
       <div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Row Level Security</span><span class="tag">Tailwind CSS 4</span><span class="tag">three.js</span><span class="tag">zod</span><span class="tag">Docker</span><span class="tag">Vercel</span><span class="tag">GitHub Actions</span></div>
     </article>
   </div>
@@ -1807,16 +1832,17 @@ a.key { text-decoration: none; color: inherit; }
   <h2 class="h2">Lo que respalda el trabajo.</h2>
   <div class="split">
     <div>
-      <h3 class="h3s">12 certificaciones</h3>
+      <h3 class="h3s">22 certificaciones</h3>
       <p class="cert-note">Cada certificación enlazada abre su verificación. Perfiles: <a href="https://www.credly.com/users/marcelo-ignacio-caballero-olave" target="_blank" rel="noopener noreferrer">Credly</a> · <a href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
       <ul class="issuers">
         <li><p class="issuer">Microsoft<small>5</small></p><div class="tags"><span class="tag">SC-900 Security, Compliance &amp; Identity</span><a class="tag" href="https://www.credly.com/badges/57d22637-02ed-4f62-9abb-d5fea46fbf0c/public_url" target="_blank" rel="noopener noreferrer">AZ-900 Azure Fundamentals</a><a class="tag" href="https://www.credly.com/badges/03381d05-5e60-4091-965c-7aa470fd26e0/public_url" target="_blank" rel="noopener noreferrer">AI-900 Azure AI Fundamentals</a><a class="tag" href="https://www.credly.com/badges/6ce5affe-2b13-4de4-8720-b50f913e20bd/public_url" target="_blank" rel="noopener noreferrer">DP-900 Azure Data Fundamentals</a><a class="tag" href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">Foundational C#</a></div></li>
         <li><p class="issuer">AWS<small>1</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/3ad8c0b3-732c-450d-9f49-6c05ebe049dd/public_url" target="_blank" rel="noopener noreferrer">Cloud Practitioner (CLF-C02)</a></div></li>
-        <li><p class="issuer">Cisco<small>2</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/b19c2ef1-5693-4b87-9429-151ea1d4c646/public_url" target="_blank" rel="noopener noreferrer">CCST Cybersecurity</a><a class="tag" href="https://www.credly.com/badges/644c08cb-0a8a-44c9-8c88-b7f24e517345/public_url" target="_blank" rel="noopener noreferrer">CCST Networking</a></div></li>
+        <li><p class="issuer">Cisco<small>5</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/b19c2ef1-5693-4b87-9429-151ea1d4c646/public_url" target="_blank" rel="noopener noreferrer">CCST Cybersecurity</a><a class="tag" href="https://www.credly.com/badges/644c08cb-0a8a-44c9-8c88-b7f24e517345/public_url" target="_blank" rel="noopener noreferrer">CCST Networking</a><a class="tag" href="https://www.credly.com/badges/37b5920e-9b75-4975-9f3a-fad874367683/public_url" target="_blank" rel="noopener noreferrer">CCST IT Support</a><a class="tag" href="https://www.credly.com/badges/eac3491a-00ff-4280-8086-5bd4bd0f5158/public_url" target="_blank" rel="noopener noreferrer">Ethical Hacker</a><a class="tag" href="https://www.credly.com/badges/77faaad4-283c-4bae-820e-ef240caff314/public_url" target="_blank" rel="noopener noreferrer">Junior Cybersecurity Analyst</a></div></li>
+        <li><p class="issuer">USACH<small>3</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/1f2a7ac4-f6ea-4c71-b61d-0b4c894a730b/public_url" target="_blank" rel="noopener noreferrer">Ciberseguridad industrial</a><a class="tag" href="https://www.credly.com/badges/f8d09e8b-1eb7-44fb-bb75-b42b391e14e0/public_url" target="_blank" rel="noopener noreferrer">Control y gestión para ciberseguridad</a><a class="tag" href="https://www.credly.com/badges/3da40297-dca7-4227-887b-b3706fb32990/public_url" target="_blank" rel="noopener noreferrer">Normativa para el sector eléctrico</a></div></li>
         <li><p class="issuer">Oracle<small>1</small></p><div class="tags"><a class="tag" href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">OCI Foundations Associate</a></div></li>
-        <li><p class="issuer">IBM<small>1</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/683811cb-55a9-495f-b4a8-c4bc4a11a9e9/public_url" target="_blank" rel="noopener noreferrer">Generative AI Fundamentals</a></div></li>
+        <li><p class="issuer">IBM<small>2</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/683811cb-55a9-495f-b4a8-c4bc4a11a9e9/public_url" target="_blank" rel="noopener noreferrer">Generative AI Fundamentals</a><a class="tag" href="https://www.credly.com/badges/8439e382-7f7d-450e-a216-fd6d698cd1d2/public_url" target="_blank" rel="noopener noreferrer">watsonx Essentials</a></div></li>
         <li><p class="issuer">Google<small>1</small></p><div class="tags"><a class="tag" href="https://www.credly.com/badges/0a07bd0b-6461-485f-a24c-f6ff3065e55d/public_url" target="_blank" rel="noopener noreferrer">Google Data Analytics</a></div></li>
-        <li><p class="issuer">Otras<small>1</small></p><div class="tags"><a class="tag" href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">Ethical Hacking Professional (CEHPC)</a></div></li>
+        <li><p class="issuer">Otras<small>4</small></p><div class="tags"><a class="tag" href="https://www.linkedin.com/in/marcelo-caballero-olave/details/certifications/" target="_blank" rel="noopener noreferrer">Ethical Hacking Professional (CEHPC)</a><a class="tag" href="https://www.credly.com/badges/85b84c82-3836-41a6-8f27-c37d49f30c4d/public_url" target="_blank" rel="noopener noreferrer">Network Security Support Technician (Certiport)</a><a class="tag" href="https://www.credly.com/badges/a843dbe7-6a03-471b-99e0-e36b63b8d959/public_url" target="_blank" rel="noopener noreferrer">PCEP Python (Python Institute)</a><a class="tag" href="https://www.credly.com/badges/51db760b-5ded-44a1-8b1a-b850539a3058/public_url" target="_blank" rel="noopener noreferrer">Scrum Master Professional (Certiprof)</a></div></li>
       </ul>
     </div>
     <div>
@@ -1935,6 +1961,10 @@ a.key { text-decoration: none; color: inherit; }
   var fmt = function (n) { return Math.round(n).toLocaleString(LANG === 'en' ? 'en-US' : 'es-CL'); };
   /* --- Idioma: español por defecto; inglés con el botón EN o ?lang=en (se recuerda) --- */
   var I18N = {
+    "Ciberseguridad industrial": "Industrial cybersecurity",
+    "Control y gestión para ciberseguridad": "Control and management for cybersecurity",
+    "Normativa para el sector eléctrico": "Regulations for the electric sector",
+    "Ver arquitectura": "View architecture",
     "Abrir cabina": "Open cockpit",
     "Experiencia interactiva · Enter": "Interactive experience · Enter",
     "Portafolio y CV, sin cabina · P": "Portfolio and CV, no cockpit · P",
@@ -2137,7 +2167,7 @@ a.key { text-decoration: none; color: inherit; }
     "Linux y hardening": "Linux and hardening",
     "Telemetría de seguridad": "Security telemetry",
     "Lo que respalda el trabajo.": "What backs the work.",
-    "12 certificaciones": "12 certifications",
+    "22 certificaciones": "22 certifications",
     "Las insignias enlazadas se verifican en": "Linked badges can be verified on",
     "mi perfil de Credly": "my Credly profile",
     "Vista del demo público. Haz clic para abrirlo.": "Public demo view. Click to open it.",
@@ -2164,8 +2194,8 @@ a.key { text-decoration: none; color: inherit; }
     "Objetivo de misión: próxima oportunidad. Abrir contacto.": "Mission objective: next opportunity. Open contact.",
     "Despliegue destacado: IBM Chile, Endpoint Security Specialist L2. Administré XDR/EDR sobre 24.000 endpoints y 3.000 servidores. Pulsa para ver todas las misiones.": "Featured deployment: IBM Chile, Endpoint Security Specialist L2. I managed XDR/EDR across 24,000 endpoints and 3,000 servers. Press to see every mission.",
     "Despliegue destacado en IBM Chile: 24.000 endpoints. Abrir misiones.": "Featured deployment at IBM Chile: 24,000 endpoints. Open missions.",
-    "Licencias de vuelo: 12 certificaciones de Microsoft, AWS, Cisco, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación.": "Flight licenses: 12 certifications from Microsoft, AWS, Cisco, Oracle, IBM and Google. Press for details and my education.",
-    "Licencias de vuelo: 12 certificaciones. Abrir licencias.": "Flight licenses: 12 certifications. Open licenses.",
+    "Licencias de vuelo: 22 certificaciones de Microsoft, AWS, Cisco, USACH, Oracle, IBM y Google. Pulsa para ver el detalle y mi formación.": "Flight licenses: 22 certifications from Microsoft, AWS, Cisco, USACH, Oracle, IBM and Google. Press for details and my education.",
+    "Licencias de vuelo: 22 certificaciones. Abrir licencias.": "Flight licenses: 22 certifications. Open licenses.",
     "Armamento principal: las herramientas de seguridad que he operado. CrowdStrike Falcon y Trend Micro Vision One en IBM, más automatización con Python y Bash.": "Main armament: the security tools I have operated. CrowdStrike Falcon and Trend Micro Vision One at IBM, plus automation with Python and Bash.",
     "Armamento principal de seguridad. Abrir arsenal.": "Main security armament. Open arsenal.",
     "Sistemas de soporte: cloud e infraestructura. Capitán del AWS Cloud Club, certificado en Azure, y Supabase con RLS y Docker en el proyecto PodoCare.": "Support systems: cloud and infrastructure. AWS Cloud Club Captain, Azure certified, and Supabase with RLS and Docker in the PodoCare project.",
@@ -2177,7 +2207,7 @@ a.key { text-decoration: none; color: inherit; }
     "Hangar: proyectos que he construido. Hoy, PodoCare, mi proyecto de título.": "Hangar: projects I have built. Today, PodoCare, my capstone project.",
     "Medallas: primer lugar en el CTF Intercede, el ejercicio de ciberdefensa Llaitún 2024 y otros reconocimientos.": "Medals: first place in the Intercede CTF, the Llaitún 2024 cyber defense exercise and other awards.",
     "Arsenal: todas mis habilidades técnicas en seguridad, cloud, sistemas y datos.": "Arsenal: all my technical skills in security, cloud, systems and data.",
-    "Licencias: mis 12 certificaciones y mi formación académica.": "Licenses: my 12 certifications and my education.",
+    "Licencias: mis 22 certificaciones y mi formación académica.": "Licenses: my 22 certifications and my education.",
     "Comms: correo, LinkedIn, GitHub, Credly y mi CV en PDF.": "Comms: email, LinkedIn, GitHub, Credly and my résumé in PDF.",
     "GitHub: abre mis repositorios en una pestaña nueva.": "GitHub: opens my repositories in a new tab.",
     "Foto de Marcelo Caballero": "Photo of Marcelo Caballero",
