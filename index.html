@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-ZNTS+BC7CMB0FLlGqMgHCWoCL6RlXRV7M+gw/6NoABM='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-AiOWHH536IVDzNVAbq9Ke1t0OKoyXSdrqr6V2/yelSE='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
 <meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1819,6 +1819,18 @@ a.key { text-decoration: none; color: inherit; }
       </div>
       <div class="tags"><span class="tag">Strands Agents</span><span class="tag">Python</span><span class="tag">Agentes de IA</span><span class="tag">Tool use</span><span class="tag">Memoria de sesión</span></div>
     </article>
+
+    <article class="project mini">
+      <div class="project-head">
+        <div>
+          <p class="project-meta">Proyecto final, Oracle Next Education (Backend), 2024</p>
+          <h3 class="project-title">ForoHub, API REST de foro</h3>
+          <p class="lead">API en Spring Boot 3 y Java 17 con CRUD de tópicos, autenticación JWT con Spring Security, validaciones y migraciones con Flyway. Los secretos se configuran por variables de entorno.</p>
+        </div>
+        <div class="actions"><a class="btn" href="https://github.com/MarceloCaballeroo/forohub" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div>
+      </div>
+      <div class="tags"><span class="tag">Java 17</span><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">JWT</span><span class="tag">MySQL</span><span class="tag">Flyway</span></div>
+    </article>
   </div>
 </section>
 
@@ -2028,6 +2040,11 @@ a.key { text-decoration: none; color: inherit; }
   var fmt = function (n) { return Math.round(n).toLocaleString(LANG === 'en' ? 'en-US' : 'es-CL'); };
   /* --- Idioma: español por defecto; inglés con el botón EN o ?lang=en (se recuerda) --- */
   var I18N = {
+    "Proyecto final, Oracle Next Education (Backend), 2024": "Capstone, Oracle Next Education (Backend), 2024",
+    "ForoHub, API REST de foro": "ForoHub, forum REST API",
+    "API en Spring Boot 3 y Java 17 con CRUD de tópicos, autenticación JWT con Spring Security, validaciones y migraciones con Flyway. Los secretos se configuran por variables de entorno.": "Spring Boot 3 and Java 17 API with topic CRUD, JWT authentication with Spring Security, validation and Flyway migrations. Secrets are configured through environment variables.",
+    "Java 17": "Java 17",
+    "Spring Boot": "Spring Boot",
     "Proyecto de evento, Nerdearla Chile 2026": "Event project, Nerdearla Chile 2026",
     "Anime Advisor, agente de IA": "Anime Advisor, AI agent",
     "Agente conversacional con Strands Agents, el SDK de código abierto de AWS. Usa 9 herramientas propias sobre un catálogo de 18.495 títulos y recuerda los gustos del usuario entre sesiones.": "Conversational agent built with Strands Agents, the open-source AWS SDK. It uses 9 custom tools over a catalog of 18,495 titles and remembers the user's tastes across sessions.",
