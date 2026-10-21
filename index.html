@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-l3xO+UHJzzVll86K6xywMP7wA1Z6KiO6icccj8XoZro='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JVrAdVPp+hxjLbKxlUcWy/IUCgaO/L9p+Xcu+RB3CUc=' 'sha256-Wmx2KdVD/btoS9IQLwmr5/ajyUkOcQLdtmwXlU9IalQ='; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Marcelo Caballero Portafolio</title>
 <meta name="description" content="Marcelo Caballero Olave: ciberseguridad, seguridad para IA y cloud security. Abierto a la próxima oportunidad.">
 <link rel="preload" href="fonts/ibm-plex-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -261,8 +261,17 @@ a.tag:hover, a.tag:focus-visible { border-color: var(--teal); color: #fff; }
 .posts-more summary { cursor: pointer; color: var(--teal); font-size: var(--fs-small); }
 .posts-more .posts { margin-top: 20px; }
 .post.noimg { border-left: 2px solid var(--teal); }
-.project.mini .project-title { font-size: clamp(24px, 2.6vw, 32px); }
-.project.mini .project-head { align-items: center; }
+.more-title { margin: -14px 0 -18px; }
+.projects-more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.project.mini { display: flex; flex-direction: column; padding: 22px; }
+.project.mini .project-head { display: contents; }
+.project.mini .project-head > div:first-child { flex: 1; order: 1; }
+.project.mini .actions { order: 3; margin-top: 16px; }
+.project.mini .project-title { font-size: clamp(22px, 2vw, 28px); margin: 6px 0 10px; line-height: 1.05; }
+.project.mini .lead { font-size: 14.5px; }
+.project.mini > .tags { margin-top: 16px; order: 2; }
+.more-link { margin-top: 24px; }
+@media (max-width: 980px) { .projects-more { grid-template-columns: 1fr; } }
 .arch figcaption { margin-top: 10px; text-align: center; font-size: var(--fs-small); color: var(--fog); }
 
 /* ---------- Logros y habilidades ---------- */
@@ -1808,19 +1817,20 @@ a.key { text-decoration: none; color: inherit; }
       <div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Row Level Security</span><span class="tag">Tailwind CSS 4</span><span class="tag">three.js</span><span class="tag">zod</span><span class="tag">Docker</span><span class="tag">Vercel</span><span class="tag">GitHub Actions</span></div>
     </article>
 
-    <article class="project mini">
+    <h3 class="h3s more-title">Más proyectos</h3>
+    <div class="projects-more">
+      <article class="project mini">
       <div class="project-head">
         <div>
-          <p class="project-meta">Proyecto de evento, Nerdearla Chile 2026</p>
-          <h3 class="project-title">Anime Advisor, agente de IA</h3>
-          <p class="lead">Agente conversacional con Strands Agents, el SDK de código abierto de AWS. Usa 9 herramientas propias sobre un catálogo de 18.495 títulos y recuerda los gustos del usuario entre sesiones.</p>
+          <p class="project-meta">Botathon 2025, Duoc UC</p>
+          <h3 class="project-title">Accesibilidad con IA en AWS</h3>
+          <p class="lead">Módulos reutilizables para sitios accesibles: texto a voz con Amazon Polly, voz a texto con Transcribe, asistente con agentes de Bedrock y auditoría con axe-core.</p>
         </div>
-        <div class="actions"><a class="btn" href="https://github.com/MarceloCaballeroo/nerdearla-agente-aws" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div>
+        <div class="actions"><a class="btn" href="https://github.com/MarceloCaballeroo/botathon-2025-accesibilidad-aws" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div>
       </div>
-      <div class="tags"><span class="tag">Strands Agents</span><span class="tag">Python</span><span class="tag">Agentes de IA</span><span class="tag">Tool use</span><span class="tag">Memoria de sesión</span></div>
+      <div class="tags"><span class="tag">Amazon Polly</span><span class="tag">Amazon Transcribe</span><span class="tag">Amazon Bedrock</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">axe-core</span></div>
     </article>
-
-    <article class="project mini">
+      <article class="project mini">
       <div class="project-head">
         <div>
           <p class="project-meta">Proyecto final, Oracle Next Education (Backend), 2024</p>
@@ -1832,17 +1842,20 @@ a.key { text-decoration: none; color: inherit; }
       <div class="tags"><span class="tag">Java 17</span><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">JWT</span><span class="tag">MySQL</span><span class="tag">Flyway</span></div>
     </article>
 
-    <article class="project mini">
+      <article class="project mini">
       <div class="project-head">
         <div>
-          <p class="project-meta">Botathon 2025, Duoc UC</p>
-          <h3 class="project-title">Accesibilidad con IA en AWS</h3>
-          <p class="lead">Módulos reutilizables para sitios accesibles: texto a voz con Amazon Polly, voz a texto con Transcribe, asistente con agentes de Bedrock y auditoría con axe-core.</p>
+          <p class="project-meta">Proyecto de evento, Nerdearla Chile 2026</p>
+          <h3 class="project-title">Anime Advisor, agente de IA</h3>
+          <p class="lead">Agente conversacional con Strands Agents, el SDK de código abierto de AWS. Usa 9 herramientas propias sobre un catálogo de 18.495 títulos y recuerda los gustos del usuario entre sesiones.</p>
         </div>
-        <div class="actions"><a class="btn" href="https://github.com/MarceloCaballeroo/botathon-2025-accesibilidad-aws" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div>
+        <div class="actions"><a class="btn" href="https://github.com/MarceloCaballeroo/nerdearla-agente-aws" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div>
       </div>
-      <div class="tags"><span class="tag">Amazon Polly</span><span class="tag">Amazon Transcribe</span><span class="tag">Amazon Bedrock</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">axe-core</span></div>
+      <div class="tags"><span class="tag">Strands Agents</span><span class="tag">Python</span><span class="tag">Agentes de IA</span><span class="tag">Tool use</span><span class="tag">Memoria de sesión</span></div>
     </article>
+
+    </div>
+    <p class="more-link"><a class="btn" href="https://github.com/MarceloCaballeroo?tab=repositories" target="_blank" rel="noopener noreferrer">Ver todos en GitHub</a></p>
   </div>
 </section>
 
@@ -2052,6 +2065,8 @@ a.key { text-decoration: none; color: inherit; }
   var fmt = function (n) { return Math.round(n).toLocaleString(LANG === 'en' ? 'en-US' : 'es-CL'); };
   /* --- Idioma: español por defecto; inglés con el botón EN o ?lang=en (se recuerda) --- */
   var I18N = {
+    "Más proyectos": "More projects",
+    "Ver todos en GitHub": "See all on GitHub",
     "Botathon 2025, Duoc UC": "Botathon 2025, Duoc UC",
     "Accesibilidad con IA en AWS": "Accessibility with AI on AWS",
     "Módulos reutilizables para sitios accesibles: texto a voz con Amazon Polly, voz a texto con Transcribe, asistente con agentes de Bedrock y auditoría con axe-core.": "Reusable modules for accessible sites: text to speech with Amazon Polly, speech to text with Transcribe, an assistant built on Bedrock agents and audits with axe-core.",
