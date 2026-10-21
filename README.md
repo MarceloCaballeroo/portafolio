@@ -5,7 +5,7 @@ Portafolio personal en un solo `index.html` (sin build, sin dependencias): modo 
 ## Estructura
 - `index.html`: todo el sitio (HTML, CSS y JS).
 - `fonts/`, `img/`: fuentes autoalojadas (licencias OFL incluidas) e imágenes.
-- `Marcelo-Caballero-CV.pdf`: CV descargable.
+- `Marcelo-Caballero-CV.pdf` y `Marcelo-Caballero-CV-EN.pdf`: CV descargable en español e inglés (2 páginas, texto seleccionable para ATS).
 - `_headers` (Cloudflare Pages) y `vercel.json` (Vercel): cabeceras de seguridad (CSP, HSTS, etc.).
 - `actualizar-csp.py`: **ejecutar después de editar cualquier `<script>`** para recalcular los hashes de la CSP.
 
